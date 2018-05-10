@@ -1,0 +1,160 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+}
+
+#container {
+    min-height:100%;
+    position:relative;
+}
+
+.fontcolor
+{
+    color: #ff5310;
+    font-weight:bold;
+}
+
+.pdleft
+{
+    padding-left: 120px;
+}
+
+.pdbottom
+{
+    padding-bottom: 20px;
+}
+
+.font-design
+{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.paddingtop
+{
+    padding-top: 30px;
+}
+
+
+
+
+/* https://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 100%;
+}
+
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+
+
+/***********************************************************************************************/
+/* General Styling */
+/***********************************************************************************************/
+body {
+    background: #eaeaea;
+    font: 300 14px/21px Open Sans, "Helvetica", Arial, sans-serif;
+    padding: 2em 0;
+}
+
+
+p {
+    margin-bottom: 1.5em;
+}
+
+hr {
+    background-color: #ccc;
+    border: none;
+    height: 1px;
+    margin: 2em 0;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 21px;
+}
+
+h3  {
+    font-size: 21px;
+    margin-bottom: 21px;
+}
+
+.container {
+    background: white;
+    margin: 0 auto;
+    padding: 4em;
+    width: 960px;
+}
+
+
+
+/***********************************************************************************************/
+/* Button */
+/***********************************************************************************************/
+.go-top {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    padding: 1em;
+    display: none;
+}
+
+.go-top:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+
