@@ -3,6 +3,7 @@ import Main from './Main'
 import Home from './Home'
 import React, {Component} from 'react';
 import Footer from './Footer'
+import LayoutHeader from "./LayoutHeader";
 class App extends Component {
 
     constructor() {
@@ -14,8 +15,8 @@ class App extends Component {
     {
         return(
         <div>
-            <Header/>
-            <Main/>
+            <LayoutHeader/>
+
             <Footer/>
         </div>
         );

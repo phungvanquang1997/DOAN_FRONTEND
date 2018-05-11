@@ -37,6 +37,22 @@ class Home extends React.Component {
         console.log("did mount");
     }
 
+
+    reload()
+    {
+        //lấy ds celeb
+        fetch("http://localhost:3001/api/BanHang/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        list: result
+                    });
+                },
+            )
+    }
+    
     handlerDelete(i)
     {
         var req = "http://localhost:3001/api/BanHang/"+i;

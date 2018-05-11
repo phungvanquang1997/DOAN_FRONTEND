@@ -1,25 +1,24 @@
 
 body {
-    margin: 0;
-    padding: 0;
     font-family: sans-serif;
-
 }
 
-#container {
-    min-height:100%;
-    position:relative;
+
+.bg-black
+{
+    background: #EAEAEA;
 }
 
 .fontcolor
 {
     color: #ff5310;
     font-weight:bold;
+    font-size: 24px;
 }
 
 .pdleft
 {
-    padding-left: 120px;
+    padding-left: 80px;
 }
 
 .pdbottom
@@ -33,10 +32,59 @@ body {
     font-size: 24px;
 }
 
+.h30
+{
+    height: 30px;
+}
+
+.paddingtop50
+{
+    padding-top: 50px;
+}
+
 .paddingtop
 {
     padding-top: 30px;
 }
+
+.float-right
+{
+    float:right;
+}
+
+.float-left
+{
+    float:left;
+}
+
+.paddingright
+{
+    padding-right: 20px;
+}
+
+.paddingleft
+{
+    padding-left: 40px;
+}
+
+
+.w100h20pdr10
+{
+    width: 100%;
+    height: 50px;
+    float:right;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -156,5 +204,4 @@ h3  {
 .go-top:hover {
     background-color: rgba(0, 0, 0, 0.6);
 }
-
 

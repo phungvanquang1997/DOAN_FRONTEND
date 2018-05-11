@@ -47,40 +47,58 @@ class FullRoster extends React.Component {
             return <div>Loading...</div>;
 
         }
-        else
-
+        else {
+            for(var i = 0 ; i < list.length; i++)
+            {
+                if(list[i].Status==0)
+                {
+                    list[i].Status ="Chưa giao";
+                }
+                if (list[i].Status==1)
+                {
+                    list[i].Status ="Đang giao";
+                }
+                if (list[i].Status==2)
+                {
+                    list[i].Status ="Đã giao";
+                }
+            }
             return (
 
-            <div>
-                <div className=" fontcolor text-center">
-                    Danh sách đơn hàng
+                <div>
+                    <div className=" fontcolor text-center">
+                        Danh sách đơn hàng
+                    </div>
+                    <div className="table-responsive">
+                        <table className="table table-striped table-sm">
+                            <thead>
+                            <tr>
+                                <th>Mã hóa đơn</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Tên khách hàng</th>
+                                <th>#</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {list.map(item => (
+
+                                <tr>
+                                    <td>{item.OrderID}</td>
+                                    <td>{item.Amount}</td>
+                                    <td>{item.Status}</td>
+                                    <td>{item.f_Name}</td>
+                                    <td>sit</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <a href="#" className="go-top">Back to top</a>
                 </div>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">Mã hóa đơn</th>
-                        <th scope="col">Tổng tiền</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col">Tên khách hàng</th>
-                        <th scope="col"> # </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {list.map(item=>(
-                    <tr>
-                        <th scope="row">{item.OrderID}</th>
-                        <td>{item.Amount}</td>
-                        <td>{item.Status}</td>
-                        <td>{item.f_Name}</td>
-                    </tr>
-                    ))}
-
-                    </tbody>
-                </table>
-                <a href="#" className="go-top">Back to top</a>
-            </div>
-        )
+            )
+        }
     }
 }
 
