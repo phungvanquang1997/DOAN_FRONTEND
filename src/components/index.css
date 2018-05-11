@@ -16,6 +16,21 @@ body {
     font-size: 24px;
 }
 
+.red-s20
+{
+    color: #5689ff;
+    font-weight:bold;
+    font-size: 20px;
+}
+
+.blue-s20
+{
+    color: #ff5310;
+    font-weight:bold;
+    font-size: 20px;
+}
+
+
 .pdleft
 {
     padding-left: 80px;

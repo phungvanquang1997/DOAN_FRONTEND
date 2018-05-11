@@ -10,6 +10,22 @@ class Home extends React.Component {
             isLoaded: false,
             list: [],
         }
+        this.reload = this.reload.bind(this);
+    }
+
+    reload()
+    {
+        //lấy ds celeb
+        fetch("http://localhost:3001/api/BanHang/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        list: result
+                    });
+                },
+            )
     }
 
     componentDidMount() {
@@ -34,11 +50,12 @@ class Home extends React.Component {
                     });
                 }
             )
-        console.log("did mount");
+
     }
 
     handlerDelete(i)
     {
+        console.log(i);
         var req = "http://localhost:3001/api/BanHang/"+i;
         fetch(req, {
             method: 'DELETE',
@@ -75,7 +92,7 @@ class Home extends React.Component {
                                                 {item.ProName}</p>
                                             <div className="d-flex justify-content-between align-items-center">
                                                 <div className="btn-group pdleft text-center">
-                                                    <button type="button"  onClick={this.handlerDelete.bind(this,item.id)} className="btn btn-danger"
+                                                    <button type="button"  onClick={this.handlerDelete.bind(this,item.ProID)} className="btn btn-danger"
                                                     >Delete
                                                     </button>
                                                     <button type="button" className="btn btn-primary"

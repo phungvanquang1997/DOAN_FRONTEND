@@ -35,12 +35,19 @@ a{
     position: relative;
     text-align: center;
     z-index: 1;
+
+}
+
+.w10
+{
+    width: 10px;
 }
 
 footer{
     background-color:#2E3639;
     position:relative;
     z-index:1;
+
 }
 
 footer .splitter{

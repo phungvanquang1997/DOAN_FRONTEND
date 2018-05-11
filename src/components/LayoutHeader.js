@@ -3,7 +3,7 @@ import Home from './Home'
 import { Link } from 'react-router-dom'
 import Header from "./Header";
 import Main from "./Main";
-import FullRoster from "./FullRoster";
+import  ListOrders from "./ListOrders";
 
 // The Header creates links that can be used to navigate
 // between routes.
@@ -23,7 +23,7 @@ class LayoutHeader extends React.Component
         return(
             <div>
         <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+            <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Quang's shop</a>
             <input className="form-control form-control-dark w-100" type="text" placeholder="Search"
                    aria-label="Search"/>
                 <ul className="navbar-nav px-3">
