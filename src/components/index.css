@@ -9,6 +9,19 @@ body {
     background: #EAEAEA;
 }
 
+.position
+{
+    position: fixed;
+}
+.pdleft50
+{
+    padding-left: 50px;
+}
+.pdtop30
+{
+    padding-top: 30px;
+}
+
 .fontcolor
 {
     color: #ff5310;

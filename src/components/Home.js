@@ -13,10 +13,41 @@ class Home extends React.Component {
         this.reload = this.reload.bind(this);
     }
 
+    handleclick()
+    {
+        var d = new Date();
+        var Now = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay();
+        fetch("http://localhost:3001/api/BanHang/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                ProName : this.ProName.value,
+                TinyDes : this.Tinydes.value,
+                FullDes : this.Fulldes.value,
+                Price : this.Price.value,
+                Quantity : this.Quantity.value,
+                OriginID:'1',
+                View:'0',
+                SoLuongBan:'0',
+                NgayNhap: Now.toString(),
+                NSX : this.nsx.value,
+                img_link : this.img_link.value,
+            })
+        }).then(res => res.json())
+            .catch(error => this.reload())
+            .then(response => this.reload());
+        // vẫn bị lỗi khi tạo JSON
+    }
+
+
     reload()
     {
         //lấy ds celeb
-        fetch("http://localhost:3001/api/BanHang/")
+
+        fetch("http://localhost:3001/api/BanHang/",{mode: "cors"})
             .then(res => res.json())
             .then(
                 (result) => {
@@ -26,6 +57,7 @@ class Home extends React.Component {
                     });
                 },
             )
+        console.log(this.state.list);
     }
 
     componentDidMount() {
@@ -78,6 +110,64 @@ class Home extends React.Component {
             return (
                 <div>
                     <h5 className="fontcolor text-center">Danh sách sản phẩm</h5>
+                    <div className="text-center pdtop30">
+                            <div className="pdbottom">
+                                <button type="button" className="btn btn-success" data-toggle="modal"
+                                        data-target="#myModal">
+                                    Thêm sản phẩm
+                                </button>
+                            </div>
+
+
+                            <div className="modal position" id="myModal">
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+
+
+                                        <div className="modal-header">
+                                            <h4 className="modal-title"> Thêm sản phẩm</h4>
+                                            <button type="button" className="close"
+                                                    data-dismiss="modal">&times;</button>
+                                        </div>
+
+
+                                        <div className="modal-body">
+                                            <span>Tên sản phẩm </span><input ref={input => this.ProName = input} name="imagelink" id="image-link"/><br/>
+                                            <span>Mô tả ngắn </span><input ref={input => this.Tinydes = input} name="name" id="name"/><br/>
+                                            <span>Mô tả đầy đủ </span><input ref={input => this.Fulldes = input} name="description" id="description"/><br/>
+                                            <span>Giá  </span><input ref={input => this.Price = input} name="imagelink" id="image-link"/><br/>
+                                            <span>Số lượng  </span><input ref={input => this.Quantity = input} name="name" id="name"/><br/>
+                                            <span>Nhà sản xuất </span><input ref={input => this.nsx = input} name="description" id="description"/><br/>
+                                            <span>Hình ảnh sản phẩm </span><input ref={input => this.img_link = input} name="imagelink" id="image-link"/><br/>
+                                        </div>
+
+
+                                        <div className="modal-footer">
+                                            <button type="button" onClick={this.handleclick.bind(this)} className="btn btn-primary"
+                                                    data-dismiss="modal">Add
+                                            </button>
+
+                                            <button type="button" className="btn btn-danger"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
 
                     <div className="paddingtop text-center fontcolor bg-black">
                         <div className="album py-5 bg-light bg-black">
