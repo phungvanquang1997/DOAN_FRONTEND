@@ -1,8 +1,17 @@
-
 body {
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
+.pdleft120
+{
+    padding-left: 120px;
+}
+
+.bold
+{
+    font-weight: bold;
+}
 
 .bg-black
 {
@@ -27,6 +36,9 @@ body {
     color: #ff5310;
     font-weight:bold;
     font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+
+
 }
 
 .red-s20

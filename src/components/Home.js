@@ -9,8 +9,23 @@ class Home extends React.Component {
             error: false,
             isLoaded: false,
             list: [],
+            listID: [], // Lấy sản phẩm dựa theo id sản phẩm
+            ProName : "abc",
+            TinyDes : "",
+            FullDes : "",
+            Price : "",
+            Quantity : "",
+            NSX : "",
+            img_link : "",
         }
         this.reload = this.reload.bind(this);
+        this.handlerChangeProName = this.handlerChangeProName.bind(this);
+        this.handlerChangeImg = this.handlerChangeImg.bind(this);
+        this.handlerChangeNSX = this.handlerChangeNSX.bind(this);
+        this.handlerChangeQuantity = this.handlerChangeQuantity.bind(this);
+        this.handlerChangePrice = this.handlerChangePrice.bind(this);
+        this.handlerChangeFullDes=this.handlerChangeFullDes.bind(this);
+        this.handlerChangeTinyDes = this.handlerChangeTinyDes.bind(this);
     }
 
     handleclick()
@@ -69,7 +84,7 @@ class Home extends React.Component {
                         isLoaded: true,
                         list: result
                     });
-                    console.log(result);// Note: it's important to handle errors here
+                    // Note: it's important to handle errors here
                     // instead of a catch() block so that we don't swallow
                     // exceptions from actual bugs in components.
                 },
@@ -84,6 +99,51 @@ class Home extends React.Component {
             )
 
     }
+    handlerUpdate(i)
+    {
+        var req = "http://localhost:3001/api/BanHang/"+i;
+        fetch(req, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                ProID : this.ProID.value,
+                ProName : this.ProNameEdit.value,
+                TinyDes : this.TinydesEdit.value,
+                FullDes : this.FulldesEdit.value,
+                Price : this.PriceEdit.value,
+                Quantity : this.QuantityEdit.value,
+                NSX : this.nsxEdit.value,
+                img_link : this.img_linkEdit.value,
+            })
+        }).then(console.log("OK"))
+    }
+
+
+    handlerGetData(i)
+    {
+        var url =  "http://localhost:3001/api/BanHang/" +i;
+        fetch(url,{mode: "cors"})
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        listID: result,
+                        ProName : result[0].ProName.toString(),
+                        TinyDes : result[0].TinyDes,
+                        FullDes : result[0].FullDes,
+                        Price : result[0].Price,
+                        Quantity : result[0].Quantity,
+                        NSX : result[0].NSX,
+                        img_link : result[0].img_link
+                    });
+
+                },
+                )
+    }
+
 
     handlerDelete(i)
     {
@@ -97,9 +157,49 @@ class Home extends React.Component {
         }).then(()=>this.reload());
     }
 
+    handlerChangeProName(event) {
+        this.setState({
+            ProName : event.target.value,
+
+        });
+    }
+
+    handlerChangeQuantity(event) {
+        this.setState({
+            Quantity : event.target.value,
+        });
+    }
+    handlerChangePrice(event) {
+        this.setState({
+            Price : event.target.value,
+        });
+    }
+
+    handlerChangeNSX(event) {
+        this.setState({
+            NSX : event.target.value,
+        });
+    }
+
+    handlerChangeImg(event) {
+        this.setState({
+            img_link : event.target.value,
+        });
+    }
+
+    handlerChangeFullDes(event) {
+        this.setState({
+            FullDes : event.target.value,
+        });
+    }
+    handlerChangeTinyDes(event) {
+        this.setState({
+            TinyDes : event.target.value,
+        });
+    }
+
     render() {
-        const {error, isLoaded, list} = this.state;
-        console.log(list);
+        const {error, isLoaded, list,listID} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -119,26 +219,54 @@ class Home extends React.Component {
                             </div>
 
 
+
+                        {/* Modal tạo sản phẩm */}
                             <div className="modal position" id="myModal">
                                 <div className="modal-dialog">
                                     <div className="modal-content">
 
 
                                         <div className="modal-header">
-                                            <h4 className="modal-title"> Thêm sản phẩm</h4>
+                                            <div className="fontcolor pdleft120"> Thêm sản phẩm</div>
                                             <button type="button" className="close"
                                                     data-dismiss="modal">&times;</button>
                                         </div>
 
 
                                         <div className="modal-body">
-                                            <span>Tên sản phẩm </span><input ref={input => this.ProName = input} name="imagelink" id="image-link"/><br/>
-                                            <span>Mô tả ngắn </span><input ref={input => this.Tinydes = input} name="name" id="name"/><br/>
-                                            <span>Mô tả đầy đủ </span><input ref={input => this.Fulldes = input} name="description" id="description"/><br/>
-                                            <span>Giá  </span><input ref={input => this.Price = input} name="imagelink" id="image-link"/><br/>
-                                            <span>Số lượng  </span><input ref={input => this.Quantity = input} name="name" id="name"/><br/>
-                                            <span>Nhà sản xuất </span><input ref={input => this.nsx = input} name="description" id="description"/><br/>
-                                            <span>Hình ảnh sản phẩm </span><input ref={input => this.img_link = input} name="imagelink" id="image-link"/><br/>
+
+                                            <div className="form-group">
+                                                <label htmlFor="exampleInputEmail1" className="bold">Tên sản phẩm</label>
+                                                <input ref={input => this.ProName = input}  type="text" className="form-control" name="txtProName" placeholder="Rượu vang"/>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="exampleInputEmail1" className="bold">Mô tả nhỏ</label>
+                                                <input type="text" ref={input => this.Tinydes = input} className="form-control " name="txtTinyDes" placeholder="..."/>
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label htmlFor="txtFullDes" ref={input => this.Fulldes = input} className="control-label bold">Chi tiết</label>
+                                                <div className="col-sm-12">
+                                          <textarea rows="4" id="txtFullDes" name="txtFullDes"
+                                          className="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="exampleInputEmail1" className="bold">Giá sản phẩm</label>
+                                                <input  ref={input => this.Price = input} type="text" className="form-control" name="txtPrice" placeholder="100000"/>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="exampleInputEmail1"className="bold">Số lượng</label>
+                                                <input ref={input => this.Quantity = input} type="text" className="form-control" name="txtQuantity" placeholder="10"/>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="exampleInputEmail1"className="bold">Nhà sản xuất</label>
+                                                <input type="text" ref={input => this.nsx = input} className="form-control" name="txtNSX" placeholder="..."/>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="exampleInputEmail1"className="bold">Link hình sản phẩm</label>
+                                                <input ref={input => this.img_link = input} type="text" className="form-control" name="txtNSX" placeholder="..."/>
+                                            </div>
                                         </div>
 
 
@@ -161,15 +289,76 @@ class Home extends React.Component {
 
 
 
+                   {/* Modal chỉnh sửa */}
+
+                    <div className="modal position" id="EditModal">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+
+
+                                <div className="modal-header">
+                                    <div className="fontcolor pdleft120"> Chỉnh sửa sản phẩm</div>
+                                    <button type="button" className="close"
+                                            data-dismiss="modal">&times;</button>
+                                </div>
+
+
+                                {listID.map(item=>
+                                    <div className="modal-body" key ={item.ProID}>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1" className="bold">Mã sản phẩm</label>
+                                            <input ref={input => this.ProID = input} value={item.ProID}  type="text" readOnly className="form-control"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1" className="bold">Tên sản phẩm</label>
+                                            <input ref={input => this.ProNameEdit = input} value={this.state.ProName}  onChange={this.handlerChangeProName} type="text" className="form-control" name="txtProName" placeholder="Rượu vang"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1" className="bold">Mô tả nhỏ</label>
+                                            <input type="text" ref={input => this.TinydesEdit = input} onChange={this.handlerChangeTinyDes} value={this.state.TinyDes} className="form-control " name="txtTinyDes" placeholder="..."/>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label htmlFor="txtFullDes" className="control-label bold">Chi tiết</label>
+                                            <div className="col-sm-12">
+                                              <textarea rows="4" id="txtFullDes" name="txtFullDes"
+                                                        className="form-control" ref={input => this.FulldesEdit = input} onChange={this.handlerChangeFullDes} value={this.state.FullDes} />
+                                            </div>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1" className="bold">Giá sản phẩm</label>
+                                            <input  ref={input => this.PriceEdit = input} value={this.state.Price} type="text"onChange={this.handlerChangePrice} className="form-control" name="txtPrice" placeholder="100000"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1"className="bold">Số lượng</label>
+                                            <input ref={input => this.QuantityEdit = input}  value={this.state.Quantity} onChange={this.handlerChangeQuantity} type="text" className="form-control" name="txtQuantity" placeholder="10"/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1"className="bold">Nhà sản xuất</label>
+                                            <input type="text" ref={input => this.nsxEdit = input} value={this.state.NSX}onChange={this.handlerChangeNSX} className="form-control" name="txtNSX" placeholder="..."/>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1"className="bold">Link hình sản phẩm</label>
+                                            <input ref={input => this.img_linkEdit = input} type="text" value={this.state.img_link}onChange={this.handlerChangeImg} className="form-control" name="txtNSX" placeholder="..."/>
+                                        </div>
+
+
+                                            <button type="button" onClick={this.handlerUpdate.bind(this,item.ProID)} className="btn btn-primary"
+                                                    data-dismiss="modal">Update
+                                            </button>
+
+                                            <button type="button" className="btn btn-danger"
+                                                    data-dismiss="modal">Close
+                                            </button>
+                                    </div>
+                                    )}
+                            </div>
+                        </div>
+                    </div>
 
 
 
-
-
-
-
-
-                    <div className="paddingtop text-center fontcolor bg-black">
+                <div className="paddingtop text-center fontcolor bg-black">
                         <div className="album py-5 bg-light bg-black">
                             <div className="row">
                                 {list.map(item=>(
@@ -185,9 +374,9 @@ class Home extends React.Component {
                                                     <button type="button"  onClick={this.handlerDelete.bind(this,item.ProID)} className="btn btn-danger"
                                                     >Delete
                                                     </button>
-                                                    <button type="button" className="btn btn-primary"
-                                                            data-toggle="modal"
-                                                    >Edit
+                                                    <button type="button" className="btn btn-primary" data-toggle="modal"
+                                                            data-target="#EditModal" onClick={this.handlerGetData.bind(this,item.ProID)}>
+                                                        Edit
                                                     </button>
                                                 </div>
                                             </div>
