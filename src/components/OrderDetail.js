@@ -13,10 +13,59 @@ class OrderDetail extends React.Component{
             error: false,
             isLoaded: false,
             list: [],
+            isHidden : "hidden",
+            value: '0',
         }
+        /*this.handlerUpdate = this.handlerUpdate.bind(this);*/
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.reload = this.reload.bind(this);
     }
 
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
 
+    handleSubmit(event) {
+        alert('Your favorite flavor is: ' + this.state.value);
+        event.preventDefault();
+    }
+
+    handlerUpdate()
+    {
+        this.setState({isHidden:'visible'});
+        var id =  this.props.match.params.number;
+        var url = "http://localhost:3001/api/orders/orders/"+id;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                Status : this.state.value,
+                OrderID : id,
+            })
+        }).then(()=>this.reload());
+
+
+    }
+
+    reload()
+    {
+        var OrderID = parseInt(this.props.match.params.number, 10);
+        var url = "http://localhost:3001/api/orders/orders/"+OrderID;
+        fetch(url, {mode: "cors"})
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        list: result
+                    });
+                    console.log(result)
+                });
+    }
 
     componentDidMount()
     {
@@ -28,7 +77,8 @@ class OrderDetail extends React.Component{
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        list: result
+                        list: result,
+
                     });
                     console.log(result)
                 },
@@ -45,8 +95,24 @@ class OrderDetail extends React.Component{
 
 
     render(){
+
         const {error, isLoaded, list} = this.state;
         console.log(list);
+        for(var i = 0 ; i < list.length; i++)
+        {
+            if(list[i].Status==0)
+            {
+                list[i].Status ="Chưa giao";
+            }
+            if (list[i].Status==1)
+            {
+                list[i].Status ="Đang giao";
+            }
+            if (list[i].Status==2)
+            {
+                list[i].Status ="Đã giao";
+            }
+        }
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -78,7 +144,23 @@ class OrderDetail extends React.Component{
                         ))}
                     </tbody>
                 </table>
-                <Link to='/roster'>Back</Link>
+                <div className="font-design">
+                    Cập nhật trạng thái giao hàng :
+                    <select value={this.state.value} onChange={this.handleChange} className="h20w120 text-center">
+                        <option  value="0">Chưa giao</option>
+                        <option   value="1">Đang giao</option>
+                        <option   value="2">Đã giao</option>
+                    </select>
+                </div>
+                <Link to='/roster' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
+                <button type="button"  className="btn btn-success" onClick={this.handlerUpdate.bind(this)}
+                >Cập nhật
+                </button>
+                <div className={this.state.isHidden} id="pdtop20">
+                    <div className="alert alert-success" id="ThongBao" role="alert">
+                        <strong>Cấp nhật trạng thái thành công!</strong>.
+                    </div>
+                </div>
             </div>
         )
     }

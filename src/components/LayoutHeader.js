@@ -59,9 +59,6 @@ class LayoutHeader extends React.Component
 
 
 
-
-
-
                 </main>
             </div>
         </div>

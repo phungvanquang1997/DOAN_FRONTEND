@@ -131,7 +131,7 @@ class Home extends React.Component {
                 (result) => {
                     this.setState({
                         listID: result,
-                        ProName : result[0].ProName.toString(),
+                        ProName : result[0].ProName,
                         TinyDes : result[0].TinyDes,
                         FullDes : result[0].FullDes,
                         Price : result[0].Price,

@@ -134,12 +134,14 @@ class ListOrders extends React.Component {
                                                 <button type="button"  onClick={this.handlerDelete.bind(this,item.OrderID)} className="btn btn-danger"
                                                 >Delete
                                                 </button>
-
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                             ))}
+                            <div>
+
+                            </div>
                             </tbody>
                         </table>
                     </div>

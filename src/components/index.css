@@ -3,6 +3,11 @@ body {
 
 }
 
+.inline
+{
+    display: inline-block;
+}
+
 .pdleft120
 {
     padding-left: 120px;
@@ -30,6 +35,38 @@ body {
 {
     padding-top: 30px;
 }
+#pdtop20
+{
+    padding-top: 20px;
+}
+
+#ThongBao{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.hidden
+{
+    visibility: hidden;
+}
+
+
+.visible
+{
+    visibility: visible;
+}
+
+.h20w120
+{
+    height: 35px;
+    width: 150px;
+}
+.w100{
+    width: 100%;
+}
 
 .fontcolor
 {
@@ -37,9 +74,15 @@ body {
     font-weight:bold;
     font-size: 24px;
     font-family: 'Open Sans', sans-serif;
-
-
 }
+
+.font-design
+{
+    color: #ff5310;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+}
+
 
 .red-s20
 {
