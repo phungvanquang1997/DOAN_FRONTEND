@@ -1,12 +1,7 @@
 import React from 'react'
-import Home from './Home'
-import { Link } from 'react-router-dom'
 import Header from "./Header";
 import Main from "./Main";
-import  ListOrders from "./ListOrders";
 
-// The Header creates links that can be used to navigate
-// between routes.
 
 
 class LayoutHeader extends React.Component
@@ -55,8 +50,7 @@ class LayoutHeader extends React.Component
                     </div>
 
                   {/*  Điều hướng Home với Fullroster*/}
-                    <Main/>
-
+                        <Main/>
 
 
                 </main>

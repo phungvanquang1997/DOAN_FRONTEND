@@ -15,8 +15,8 @@ class Header extends React.Component
     render()
     {
         return(
-            <nav className="col-md-2 d-none d-md-block bg-light sidebar">
-                <div className="sidebar-sticky">
+            <nav className="col-md-2 d-none d-md-block border-inset sidebar">
+                <div className="sidebar-sticky bgHeader border-inset">
                     <ul className="nav flex-column">
                         <li className="nav-item">
                             <Link to='/roster' className="nav-link" >
@@ -45,7 +45,7 @@ class Header extends React.Component
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/schedule' className="nav-link" >
+                            <Link to='/listUser' className="nav-link" >
                                 <span data-feather="users"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

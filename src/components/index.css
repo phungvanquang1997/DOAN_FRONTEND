@@ -40,6 +40,17 @@ body {
     padding-top: 20px;
 }
 
+.border-inset
+{border-style: inset;}
+
+
+tr:hover{
+    background-color: yellow;
+}
+.bgHeader
+{
+    background: #EAEAEA;
+}
 #ThongBao{
     font-weight: bold;
     font-size: 20px;

@@ -12,7 +12,7 @@ class Footer extends Component {
     {
         return(
             <footer className="pdbottomFooter">
-                <div className="splitter"></div>
+        {/*        <div className="splitter"></div>*/}
                 <ul>
                     <li>
                         <div className="icon" data-icon="E"></div>
