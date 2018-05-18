@@ -30,14 +30,11 @@ class Home extends React.Component {
 
     handleclick()
     {
+        var token = window.localStorage.getItem('access_token');
         var d = new Date();
         var Now = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay();
         fetch("http://localhost:3001/api/BanHang/", {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
             body: JSON.stringify({
                 ProName : this.ProName.value,
                 TinyDes : this.Tinydes.value,
@@ -50,9 +47,12 @@ class Home extends React.Component {
                 NgayNhap: Now.toString(),
                 NSX : this.nsx.value,
                 img_link : this.img_link.value,
-            })
-        }).then(res => res.json())
-            .catch(error => this.reload())
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
+            },
+        }).catch(error => this.reload())
             .then(response => this.reload());
         // vẫn bị lỗi khi tạo JSON
     }
@@ -60,33 +60,23 @@ class Home extends React.Component {
 
     reload()
     {
-        //lấy ds celeb
+        var url = "http://localhost:3001/api/BanHang/"
+        var token = window.localStorage.getItem('access_token');
+        console.log(token);
 
-        fetch("http://localhost:3001/api/BanHang/",{mode: "cors"})
-            .then(res => res.json())
+        //gửi json nên để header 'Content-Type': 'application/json'
+        fetch(url,{
+            method: "GET",
+            headers: {
+                "Authorization": "bearer "+token.toString(),
+                'Content-Type': 'application/json'},
+        }).then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
                         list: result
                     });
-                },
-            )
-        console.log(this.state.list);
-    }
-
-    componentDidMount() {
-        fetch("http://localhost:3001/api/BanHang/", {mode: "cors"})
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        list: result
-                    });
-                    // Note: it's important to handle errors here
-                    // instead of a catch() block so that we don't swallow
-                    // exceptions from actual bugs in components.
                 },
 
                 (error) => {
@@ -95,17 +85,48 @@ class Home extends React.Component {
                         isLoaded: true,
                         error
                     });
-                }
-            )
+                })
+    }
+
+    componentDidMount() {
+        var url = "http://localhost:3001/api/BanHang/"
+        var token = window.localStorage.getItem('access_token');
+        console.log(token);
+
+        //gửi json nên để header 'Content-Type': 'application/json'
+        fetch(url,{
+            method: "GET",
+            headers: {
+                "Authorization": "bearer "+token.toString(),
+                'Content-Type': 'application/json'},
+        }).then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        list: result
+                    });
+                },
+
+                (error) => {
+                    console.log("error cmnr");
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                })
 
     }
+
     handlerUpdate(i)
     {
+        var token = window.localStorage.getItem('access_token');
         var req = "http://localhost:3001/api/BanHang/"+i;
         fetch(req, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
             },
             mode: 'cors',
             body: JSON.stringify({
@@ -124,8 +145,18 @@ class Home extends React.Component {
 
     handlerGetData(i)
     {
-        var url =  "http://localhost:3001/api/BanHang/" +i;
-        fetch(url,{mode: "cors"})
+        var url = "http://localhost:3001/api/BanHang/"+i;
+        var token = window.localStorage.getItem('access_token');
+        console.log(token);
+
+        //gửi json nên để header 'Content-Type': 'application/json'
+
+        fetch(url,{
+            method: 'GET',
+            headers: {
+                "Authorization": "bearer "+token.toString(),
+                'Content-Type': 'application/json'},
+        })
             .then(res => res.json())
             .then(
                 (result) => {
@@ -147,14 +178,19 @@ class Home extends React.Component {
 
     handlerDelete(i)
     {
-        console.log(i);
-        var req = "http://localhost:3001/api/BanHang/"+i;
-        fetch(req, {
+
+        var url = "http://localhost:3001/api/BanHang/"+i;
+        var token = window.localStorage.getItem('access_token');
+        console.log(token);
+
+        //gửi json nên để header 'Content-Type': 'application/json'
+        fetch(url,{
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
-            },
+                "Authorization": "bearer "+token.toString(),
+                'Content-Type': 'application/json'},
         }).then(()=>this.reload());
+
     }
 
     handlerChangeProName(event) {

@@ -11,6 +11,7 @@ class Footer extends Component {
     render()
     {
         return(
+            <div className="pdtop1">
             <footer className="pdbottomFooter">
         {/*        <div className="splitter"></div>*/}
                 <ul>
@@ -84,7 +85,7 @@ class Footer extends Component {
                     </div>
                 </div>
             </footer>
-
+            </div>
         );
     }
 }

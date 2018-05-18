@@ -64,33 +64,3 @@ class LayoutHeader extends React.Component
 
 export default LayoutHeader
 
-    {/*    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <span className="glyphicon glyphicon-home"></span>
-                            <a className="nav-link glyphicon glyphicon-home" href="#">Home <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li>
-                            <form className="form-inline my-2 my-lg-0">
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                        </li>
-                    </ul>
-                    <div className="nav-item dropdown paddingright">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Phùng Văn Quang
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-
-                </div>
-            </nav>*/}

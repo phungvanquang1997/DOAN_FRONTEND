@@ -27,13 +27,15 @@ class UserDetail extends React.Component{
 
     handlerUpdate()
     {
+        var token = window.localStorage.getItem('access_token');
         this.setState({isHidden:'visible'});
         var id =  this.props.match.params.number;
         var url = "http://localhost:3001/api/users/users/"+id;
         fetch(url, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
             },
             mode: 'cors',
             body: JSON.stringify({
@@ -47,25 +49,53 @@ class UserDetail extends React.Component{
 
     reload()
     {
+        var token = window.localStorage.getItem('access_token');
         var ID = parseInt(this.props.match.params.number, 10);
         var url = "http://localhost:3001/api/users/users/"+ID;
-        fetch(url, {mode: "cors"})
+
+        fetch(url, {
+            mode: "cors",
+            method : "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
+            },
+        })
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        list: result
+                        list: result,
+
                     });
                     console.log(result)
-                });
+                },
+
+                (error) => {
+                    console.log("error cmnr");
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
     }
 
     componentDidMount()
     {
+        var token = window.localStorage.getItem('access_token');
+
         var ID = parseInt(this.props.match.params.number, 10);
         var url = "http://localhost:3001/api/users/users/"+ID;
-        fetch(url, {mode: "cors"})
+        fetch(url, {
+            mode: "cors",
+            method : "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
+            },
+        })
             .then(res => res.json())
             .then(
                 (result) => {

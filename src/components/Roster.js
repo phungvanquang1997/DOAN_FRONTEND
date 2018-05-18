@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import ListOrders from './ListOrders'
-import Player from './Player'
 import OrderDetail from "./OrderDetail";
 
 // The Roster component matches one of two different routes

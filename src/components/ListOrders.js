@@ -18,8 +18,8 @@ class ListOrders extends React.Component {
 
     componentDidMount()
     {
-
-        fetch("http://localhost:3001/api/orders/orders",{mode:"cors"})
+        this.sendToKen();
+      /*  fetch("http://localhost:3001/api/orders/orders",{mode:"cors"})
             .then(res => res.json())
             .then(
                 (result) => {
@@ -27,9 +27,7 @@ class ListOrders extends React.Component {
                         isLoaded: true,
                         list: result
                     });
-                    console.log(result);// Note: it's important to handle errors here
-                    // instead of a catch() block so that we don't swallow
-                    // exceptions from actual bugs in components.
+                    console.log(result);
                 },
 
                 (error) => {
@@ -39,41 +37,75 @@ class ListOrders extends React.Component {
                         error
                     });
                 }
-            )
+            )*/
     }
 
+
+    sendToKen()
+    {
+        var token = window.localStorage.getItem('access_token');
+        var url = "http://localhost:3001/api/orders/orders";
+        fetch(url,{
+            "async": true,
+            "method": "GET",
+            "headers": {
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+        }).then(res=>res.json())
+            .
+        then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    list: result
+                });
+                console.log(result);
+            })
+
+    }
 
     reload()
     {
         //lấy ds celeb
-        fetch("http://localhost:3001/api/orders/orders/")
-            .then(res => res.json())
+        var token = window.localStorage.getItem('access_token');
+        console.log(token);
+        var url = "http://localhost:3001/api/orders/orders";
+        fetch(url,{
+            "async": true,
+            "method": "GET",
+            "headers": {
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+        }).then(res=>res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
                         list: result
                     });
-                },
-            )
+                    console.log(result);
+                })
     }
 
     handlerDelete(i)
     {
-        console.log(i);
-        var req = "http://localhost:3001/api/orders/orders/"+i;
-        fetch(req, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        var url = "http://localhost:3001/api/orders/orders/"+i;
+        var token = window.localStorage.getItem('access_token');
+        fetch(url,{
+            "async": true,
+            "method": "DELETE",
+            "headers": {
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
         }).then(()=>this.reload());
     }
 
     render() {
         const {error,isLoaded,list} = this.state;
-        console.log(list);
-
+        console.log(this.state.list);
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {

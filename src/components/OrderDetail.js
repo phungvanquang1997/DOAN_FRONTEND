@@ -18,7 +18,6 @@ class OrderDetail extends React.Component{
         }
         /*this.handlerUpdate = this.handlerUpdate.bind(this);*/
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.reload = this.reload.bind(this);
     }
 
@@ -26,17 +25,30 @@ class OrderDetail extends React.Component{
         this.setState({value: event.target.value});
     }
 
-    handleSubmit(event) {
-        alert('Your favorite flavor is: ' + this.state.value);
-        event.preventDefault();
-    }
+
 
     handlerUpdate()
     {
         this.setState({isHidden:'visible'});
         var id =  this.props.match.params.number;
         var url = "http://localhost:3001/api/orders/orders/"+id;
-        fetch(url, {
+        var token = window.localStorage.getItem('access_token');
+        console.log(token);
+
+        //gửi json nên để header 'Content-Type': 'application/json'
+        fetch(url,{
+            body: JSON.stringify({
+                Status: this.state.value,
+                OrderID : id,
+            }),
+            method: "PUT",
+            mode: 'cors',
+            headers: {
+                "Authorization": "bearer "+token.toString(),
+                'Content-Type': 'application/json'},
+        }).then(()=>this.reload());
+
+        /*fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -46,7 +58,7 @@ class OrderDetail extends React.Component{
                 Status : this.state.value,
                 OrderID : id,
             })
-        }).then(()=>this.reload());
+        }).then(()=>this.reload());*/
 
 
     }
@@ -55,23 +67,47 @@ class OrderDetail extends React.Component{
     {
         var OrderID = parseInt(this.props.match.params.number, 10);
         var url = "http://localhost:3001/api/orders/orders/"+OrderID;
-        fetch(url, {mode: "cors"})
-            .then(res => res.json())
+        var token = window.localStorage.getItem('access_token');
+        fetch(url,{
+            "async": true,
+            "method": "GET",
+            "headers": {
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+        }).then(res=>res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
                         list: result
                     });
-                    console.log(result)
-                });
+                    console.log(result);
+                })
     }
 
     componentDidMount()
     {
         var OrderID = parseInt(this.props.match.params.number, 10);
         var url = "http://localhost:3001/api/orders/orders/"+OrderID;
-        fetch(url, {mode: "cors"})
+        var token = window.localStorage.getItem('access_token');
+        fetch(url,{
+            "async": true,
+            "method": "GET",
+            "headers": {
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+        }).then(res=>res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        list: result
+                    });
+                    console.log(result);
+                })
+  /*      fetch(url, {mode: "cors"})
             .then(res => res.json())
             .then(
                 (result) => {
@@ -90,7 +126,7 @@ class OrderDetail extends React.Component{
                         error
                     });
                 }
-            )
+            )*/
     }
 
 

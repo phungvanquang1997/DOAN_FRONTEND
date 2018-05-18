@@ -18,8 +18,15 @@ class ListUser extends React.Component {
 
     componentDidMount()
     {
-
-        fetch("http://localhost:3001/api/users/users/",{mode:"cors"})
+        var token = window.localStorage.getItem('access_token');
+        fetch("http://localhost:3001/api/users/users/",{
+            method:"GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
+            },
+            mode:"cors"
+        })
             .then(res => res.json())
             .then(
                 (result) => {
@@ -46,7 +53,15 @@ class ListUser extends React.Component {
     reload()
     {
         //lấy ds celeb
-        fetch("http://localhost:3001/api/users/users/")
+        var token = window.localStorage.getItem('access_token');
+        fetch("http://localhost:3001/api/users/users/",{
+            method:"GET",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
+            },
+            mode:"cors"
+        })
             .then(res => res.json())
             .then(
                 (result) => {
@@ -54,18 +69,30 @@ class ListUser extends React.Component {
                         isLoaded: true,
                         list: result
                     });
+                    console.log(result);// Note: it's important to handle errors here
+                    // instead of a catch() block so that we don't swallow
+                    // exceptions from actual bugs in components.
                 },
+
+                (error) => {
+                    console.log("error cmnr");
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
             )
     }
 
     handlerDelete(i)
     {
-        console.log(i);
+        var token = window.localStorage.getItem('access_token');
         var req = "http://localhost:3001/api/users/users/"+i;
         fetch(req, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": "bearer "+token.toString(),
             },
         }).then(()=>this.reload());
     }
