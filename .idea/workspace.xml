@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94d02edb-575d-4887-be54-04e2be671832" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/MainProducts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProductHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/productLayout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LayoutHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LayoutHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ListOrders.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ListOrders.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ListUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ListUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/OrderDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OrderDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Player.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Player.js___jb_tmp___" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Roster.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Roster.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Roster.js___jb_tmp___" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="94d02edb-575d-4887-be54-04e2be671832" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -183,6 +161,11 @@
             <path>
               <item name="frontend-heroku" type="b2602c69:ProjectViewProjectNode" />
               <item name="frontend-heroku" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend-heroku" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend-heroku" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -260,16 +243,15 @@
       <workItem from="1526373341950" duration="40000" />
       <workItem from="1526373393196" duration="621000" />
       <workItem from="1526537228762" duration="27015000" />
-      <workItem from="1526609754211" duration="13214000" />
+      <workItem from="1526609754211" duration="13538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138114000" />
+    <option name="totallyTimeSpent" value="138438000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1040" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.24296875" />
       <window_info anchor="bottom" id="TODO" order="10" />
