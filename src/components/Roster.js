@@ -7,8 +7,8 @@ import OrderDetail from "./OrderDetail";
 // depending on the full pathname
 const Roster = () => (
     <Switch>
-        <Route exact path='/roster' component={ListOrders}/>
-        <Route path='/roster/:number' component={OrderDetail}/>
+        <Route exact path='/admin/roster' component={ListOrders}/>
+        <Route path='/admin/roster/:number' component={OrderDetail}/>
     </Switch>
 )
 

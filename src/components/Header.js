@@ -19,7 +19,7 @@ class Header extends React.Component
                 <div className="sidebar-sticky bgHeader border-inset">
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                            <Link to='/roster' className="nav-link" >
+                            <Link to='/admin/roster' className="nav-link" >
                                 <span data-feather="file"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -31,7 +31,7 @@ class Header extends React.Component
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/' className="nav-link">
+                            <Link to='/admin/' className="nav-link">
                                 <span data-feather="shopping-cart"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -45,7 +45,7 @@ class Header extends React.Component
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/listUser' className="nav-link" >
+                            <Link to='/admin/listUser' className="nav-link" >
                                 <span data-feather="users"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -59,7 +59,7 @@ class Header extends React.Component
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link to='/admin/listUser/1' className="nav-link" >
                                 <span data-feather="bar-chart-2"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -69,7 +69,8 @@ class Header extends React.Component
                                     <line x1="6" y1="20" x2="6" y2="14"></line>
                                 </svg>
                                 Reports
-                            </a>
+
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">

@@ -3,15 +3,30 @@ import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import Roster from './Roster'
 import User from './User'
-import login from './login'
+import Login from './login'
 import Register from './register';
-const Main = () => (
-    <main>
-        <Switch>
-            <Route path='/register' component={Register}/>
-            <Route path='/login' component={login}/>
-        </Switch>
-    </main>
-)
+
+class Main extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: true,
+        }
+    }
+
+    render() {
+        return (
+
+            <main>
+                <Switch>
+
+                    <Route path='/home/register' component={Register}/>
+                    <Route path='/home/login' component={Login}/>
+                </Switch>
+            </main>
+        )
+    }
+}
 
 export default Main

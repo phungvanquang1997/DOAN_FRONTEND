@@ -188,7 +188,7 @@ class OrderDetail extends React.Component{
                         <option   value="2">Đã giao</option>
                     </select>
                 </div>
-                <Link to='/roster' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
+                <Link to='/admin/roster' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
                 <button type="button"  className="btn btn-success" onClick={this.handlerUpdate.bind(this)}
                 >Cập nhật
                 </button>

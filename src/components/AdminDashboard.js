@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from "./Header";
 import Main from "./Main";
+import { Link } from 'react-router-dom';
 
 
-
-class LayoutHeader extends React.Component
+class AdminDashboard extends React.Component
 {
 
     constructor(props) {
@@ -24,6 +24,7 @@ class LayoutHeader extends React.Component
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
                         <a className="nav-link" href="#">Sign out</a>
+                        <Link to ='/home'>Click me</Link>
                     </li>
                 </ul>
         </nav>
@@ -49,7 +50,6 @@ class LayoutHeader extends React.Component
                         </div>
                     </div>
 
-                  {/*  Điều hướng Home với Fullroster*/}
                         <Main/>
 
 
@@ -62,5 +62,5 @@ class LayoutHeader extends React.Component
 
 }
 
-export default LayoutHeader
+export default AdminDashboard
 

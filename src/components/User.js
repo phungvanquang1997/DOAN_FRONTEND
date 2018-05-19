@@ -5,8 +5,8 @@ import { Switch, Route } from 'react-router-dom'
 
 const User = () => (
     <Switch>
-        <Route exact path='/listUser' component={ListUser}/>
-        <Route path='/listUser/:number' component={UserDetail}/>
+        <Route exact path='/admin/listUser' component={ListUser}/>
+        <Route exact path='/admin/listUser/:number' component={UserDetail}/>
     </Switch>
 )
 

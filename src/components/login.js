@@ -1,10 +1,10 @@
 import React from 'react'
-import OrderDetail from "./OrderDetail";
-import { Switch, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { Route, Redirect } from 'react-router'
+import ProductHeader from "./ProductHeader";
+import Productlayout from "./productLayout";
 
-var ReactDOM = require('react-dom');
-
-class login extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,8 +33,8 @@ class login extends React.Component {
         var token = window.localStorage.getItem('access_token');
         this.sendToken(token);
 
-        /*ReactDOM.unmountComponentAtNode(document.getElementById("quang"));*/
     }
+
 /*
     getToken()
     {
@@ -81,7 +81,6 @@ class login extends React.Component {
     {
         return(
             <div className="bg-img">
-
                 <div className="login-form" >
                     <div className="bg-form">
                         <h2 className="text-center">Sign in</h2>
@@ -110,12 +109,15 @@ class login extends React.Component {
                         </div>
                         <div>
                             <button className="btn btn-success btn-block login-btn" onClick={this.handlerSingin.bind(this)}>Sign in</button>
+                            
                         </div>
                         <div className="clearfix">
+                            <Link to ="/admin">go to admin</Link>
                             <label className="pull-left checkbox-inline"><input type="checkbox"/> Remember me</label>
                             <a href="#" className="pull-right text-success">Forgot Password?</a>
                         </div>
                     </div>
+
 
 
                     <div className="hint-text small">Don't have an account? <a href="#" className="text-success">Register
@@ -126,4 +128,4 @@ class login extends React.Component {
         )};
 }
 
-export default login
+export default Login

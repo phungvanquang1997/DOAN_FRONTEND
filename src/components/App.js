@@ -3,9 +3,11 @@ import Main from './Main'
 import Home from './Home'
 import React, {Component} from 'react';
 import Footer from './Footer'
-import LayoutHeader from "./LayoutHeader";
+import AdminDashboard from "./AdminDashboard";
 import Login from "./login";
 import ProductLayout from "./productLayout";
+import Route from "./router";
+import Register from "./register"
 
 class App extends Component {
 
@@ -18,11 +20,12 @@ class App extends Component {
     {
         return(
         <div >
-            <ProductLayout/>
-            <LayoutHeader/>
+                <Route/>
         </div>
         );
     }
+
+
 }
 
 export default App

@@ -168,7 +168,7 @@ class UserDetail extends React.Component{
                             <option value="1">Quản trị viên</option>
                         </select>
                     </div>
-                    <Link to='/listUser' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
+                    <Link to='/admin/listUser' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
                     <button type="button" className="btn btn-success" onClick={this.handlerUpdate.bind(this)}
                     >Cập nhật
                     </button>

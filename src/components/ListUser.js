@@ -152,7 +152,7 @@ class ListUser extends React.Component {
                                              </Link>*/}
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="btn-group pdleft text-center">
-                                                <Link to ={"/listUser/"+item.f_ID} className="fas fa-edit btn btn-primary">Detail</Link>
+                                                <Link to ={"/admin/listUser/"+item.f_ID} className="fas fa-edit btn btn-primary">Detail</Link>
                                                 <button type="button"  onClick={this.handlerDelete.bind(this,item.f_ID)} className="btn btn-danger"
                                                 >Delete
                                                 </button>

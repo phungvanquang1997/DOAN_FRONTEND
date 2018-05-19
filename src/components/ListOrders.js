@@ -162,7 +162,7 @@ class ListOrders extends React.Component {
                                              </Link>*/}
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="btn-group pdleft text-center">
-                                                <Link to ={"/roster/"+item.OrderID} className="fas fa-edit btn btn-primary">Detail</Link>
+                                                <Link to ={"roster/"+item.OrderID} className="fas fa-edit btn btn-primary">Detail</Link>
                                                 <button type="button"  onClick={this.handlerDelete.bind(this,item.OrderID)} className="btn btn-danger"
                                                 >Delete
                                                 </button>

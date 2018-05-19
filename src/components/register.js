@@ -1,4 +1,6 @@
 import React from 'react'
+import ProductHeader from "./ProductHeader";
+import ProductLayout from "./productLayout"
 
 class register extends React.Component {
 
@@ -42,9 +44,9 @@ class register extends React.Component {
         return(
             <div className="bg-img">
                 <div className="col-md-2">
-                    </div>
+                </div>
 
-                    <div className="col-md-6 col bg-img">
+                <div className="col-md-6 col bg-img">
                     <div className="form-group">
                         <label htmlFor="txtHoTen">Họ tên</label>
                         <input type="text"  ref={input=>this.f_Name = input}   className="form-control" id="txtHoTen" name="txtHoTen"/>
@@ -83,21 +85,21 @@ class register extends React.Component {
 
 
 
-               {/*     <div className="form-group">
+                    {/*     <div className="form-group">
                         <label htmlFor="txtUserInput">Captcha</label>
                         <input type="text" className="form-control" id="txtUserInput" name="txtUserInput"/>
                     </div>*/}
 
 
-                        <div className={this.state.isHidden} id="pdtop20">
-                            <div className="alert alert-success" id="ThongBao" role="alert">
-                                <strong>Đăng ký thành công!</strong>.
-                            </div>
+                    <div className={this.state.isHidden} id="pdtop20">
+                        <div className="alert alert-success" id="ThongBao" role="alert">
+                            <strong>Đăng ký thành công!</strong>.
                         </div>
+                    </div>
 
 
 
-                <br/>
+                    <br/>
 
 
                     <button onClick={this.handlerRegister.bind(this)} className="btn btn-success btn-block" name="btnRegister">
