@@ -4,6 +4,7 @@ import ProductLayout from "./productLayout"
 import Register from "./register"
 import Login from "./login";
 import AdminDashboard from "./AdminDashboard";
+import Main from "./Main"
 
 class LayoutAdmin extends React.Component {
 
@@ -21,6 +22,7 @@ class LayoutAdmin extends React.Component {
         return(
             <React.Fragment>
                 <AdminDashboard/>
+
             </React.Fragment>
         )
     }

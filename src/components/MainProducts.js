@@ -20,7 +20,6 @@ class Main extends React.Component {
 
             <main>
                 <Switch>
-
                     <Route path='/home/register' component={Register}/>
                     <Route path='/home/login' component={Login}/>
                 </Switch>

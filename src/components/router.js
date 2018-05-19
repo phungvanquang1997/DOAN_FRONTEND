@@ -30,14 +30,17 @@ const Index = () =>
 const  RouteConfig =() =>
     (
         <Switch>
-            <Route exact path = "/" component={Index}/>
+           {/* <Route exact path = "/" component={Index}/>*/}
             <Route exact path='/admin' component={Admin}/>
-            <Route exact path='/home' component={RouteHome}/>
+            <Route exact path='/' component={RouteHome}/>
             {/*gọi layout*/}
             <Route exact path="/home/register" component={LayoutProduct}/>
            <Route exact path="/home/login" component={LayoutProduct}/>
             <Route exact path='/admin/roster' component={LayoutAdmin}/>
             <Route exact path='/admin/listUser' component={LayoutAdmin}/>
+            <Route exact path='/admin/listUser/:number' component={LayoutAdmin}/>
+            <Route exact path='/admin/roster/' component={LayoutAdmin}/>
+            <Route exact path='/admin/roster/:number' component={LayoutAdmin}/>
         </Switch>
     );
 

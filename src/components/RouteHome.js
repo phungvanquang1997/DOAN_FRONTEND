@@ -18,9 +18,9 @@ const RouteHome =() =>
     (
 
         <Switch>
-            <Route exact path = "/home" component={ProductLayout}/>
-            <Route exact path='/home/register' component={Register}/>
-            <Route exact path='/home/login' component={Login}/>
+            <Route exact path = "/" component={ProductLayout}/>
+          {/*  <Route exact path='/home/register' component={Register}/>
+            <Route exact path='/home/login' component={Login}/>*/}
         </Switch>
     );
 
