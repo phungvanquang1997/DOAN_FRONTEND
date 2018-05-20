@@ -2,6 +2,38 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+
+.pdtopn
+{
+   padding-top: 60px;
+}
+
+
+.color-red
+{
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.p-fixed
+{
+    position: fixed;
+    width: 100%;
+
+}
+
+.top0
+{
+    width: 100%;
+    position:absolute;
+    top:0%;
+}
+.bg-color
+{
+    background-color: #f8f9fa;
+}
+
 .pdtop1
 {
     padding-top: 1px;
@@ -24,6 +56,30 @@ h1.page-header {
     width: 100%;
 }
 
+.size24
+{
+    font-size: 24px;
+}
+
+.w250h250
+{
+    width: 250px;
+    height: 250px;
+}
+
+.margin0auto
+{
+    width:270px;
+    height:540px;
+    position:absolute;
+    left:50%;
+    top:30%;
+    margin:-60px 0 0 -120px;
+}
+.pdtop30
+{
+    padding-top: 30px;
+}
 
 .bg-form
 {
@@ -70,9 +126,9 @@ h1.page-header {
 {
     padding-left: 50px;
 }
-.pdtop30
+.pdtop60
 {
-    padding-top: 30px;
+    padding-top: 60px;
 }
 #pdtop20
 {

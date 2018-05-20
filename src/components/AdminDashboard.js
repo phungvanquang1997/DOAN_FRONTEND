@@ -1,8 +1,9 @@
 import React from 'react'
-import Header from "./Header";
+import Header from "./AdminCatologies";
 import Main from "./Main";
 import { Link } from 'react-router-dom';
-
+import Error from "./Error"
+import Footer from "./Footer";
 
 class AdminDashboard extends React.Component
 {
@@ -14,17 +15,32 @@ class AdminDashboard extends React.Component
         }
     }
 
+    SignOut()
+    {
+        window.localStorage.removeItem("access_token"); // remove token là access token
+        document.location.href = "http://localhost:3000/"; // chuyển về trang index
+    }
+
     render(){
+        var token = window.localStorage.getItem('access_token');
+        if(!token)
+        {
+            return(
+                <Error/>
+            )
+        }
+        else
+        {
         return(
-            <div>
+            <div className="top0">
         <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
             <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Quang's shop</a>
             <input className="form-control form-control-dark w-100" type="text" placeholder="Search"
                    aria-label="Search"/>
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
-                        <a className="nav-link" href="#">Sign out</a>
-                        <Link to ='/'>Click me</Link>
+                        <a className="nav-link btn" onClick={this.SignOut.bind(this)}>Sign out</a>
+
                     </li>
                 </ul>
         </nav>
@@ -56,8 +72,10 @@ class AdminDashboard extends React.Component
                 </main>
             </div>
         </div>
+                <Footer/>
             </div>
-        );
+
+        )};
     }
 
 }

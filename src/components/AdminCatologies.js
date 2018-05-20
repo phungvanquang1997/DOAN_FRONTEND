@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // between routes.
 
 
-class Header extends React.Component
+class AdminCatologies extends React.Component
 {
 
     constructor(props) {
@@ -16,10 +16,10 @@ class Header extends React.Component
     {
         return(
             <nav className="col-md-2 d-none d-md-block border-inset sidebar">
-                <div className="sidebar-sticky bgHeader border-inset">
+                <div className="sidebar-sticky bgHeader border-inset ">
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                            <Link to='/admin/roster' className="nav-link" >
+                            <Link to='/admin/order/' className="nav-link" >
                                 <span data-feather="file"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -125,4 +125,4 @@ class Header extends React.Component
        )
     }
 }
-export default Header
+export default AdminCatologies

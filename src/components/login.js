@@ -1,20 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Route, Redirect } from 'react-router'
-import ProductHeader from "./ProductHeader";
-import Productlayout from "./productLayout";
+import ProductCatologies from "./ProductCatologies";
+import Productlayout from "./AllProduct";
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            access : "",
+            access : "0",
+            isHidden: "hidden",
         }
     }
 
 
     handlerSingin()
     {
+        var token;
 
         var url = "http://localhost:3001/login/login";
         fetch(url,{
@@ -26,33 +28,22 @@ class Login extends React.Component {
             "headers": {
                 "Content-Type": "application/json",
             },
-        }).then((rs)=>rs.json()).then((rs)=>{
-            window.localStorage.setItem('access_token', rs.token);
+        }).then((rs)=>rs.json()).then((rs1)=>{
+            if(rs1.err)
+            {
+                this.setState({isHidden:"visible"});
+            }
+            else {
+                window.localStorage.setItem('access_token', rs1.token);
+                token = window.localStorage.getItem('access_token');
+                this.sendToken(token);
+            }
         });
 
-        var token = window.localStorage.getItem('access_token');
-        this.sendToken(token);
+
 
     }
 
-/*
-    getToken()
-    {
-       var data = {"name":"admin","password":"123456"};
-       var url = "http://localhost:3001/login/login";
-        fetch(url,{
-            body: JSON.stringify(data),
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/json",
-            },
-        }).then((rs)=>rs.json()).then((rs)=>{
-            window.localStorage.setItem('access_token', rs.token);
-        });
-
-        var token = window.localStorage.getItem('access_token');
-        console.log(token);
-    }*/
 
 
     sendToken(token)
@@ -65,15 +56,21 @@ class Login extends React.Component {
              "headers": {
                  "Authorization": "bearer"+token.toString(),
                  "Cache-Control": "no-cache",
-                 "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+               },
           }).then(res => res.json())
              .then(
                  (result) => {
                      this.setState({
                          access: result // nhận đc res từ /secret
                      });
-                     console.log(result)
-                 });
+                     if(this.state.access != "0")
+                     {
+                         document.location.href = "http://localhost:3000/admin";
+                     }
+                 },
+                 );
+
+
     }
 
 
@@ -112,10 +109,18 @@ class Login extends React.Component {
                             
                         </div>
                         <div className="clearfix">
-                            <Link to ="/admin">go to admin</Link>
                             <label className="pull-left checkbox-inline"><input type="checkbox"/> Remember me</label>
                             <a href="#" className="pull-right text-success">Forgot Password?</a>
                         </div>
+                        <div className={this.state.isHidden} id="pdtop20">
+                            <div className="alert alert-danger" id="ThongBao" role="alert">
+                                <strong>Tên đăng nhập hoặc mật khẩu không đúng !!</strong>.
+                            </div>
+                        </div>
+                        <Link to ="/admin">
+                            <span className="color-red"> (Demo) </span>
+                            <p> Go to admin ! Check if you don't have a token</p>
+                        </Link>
                     </div>
 
 

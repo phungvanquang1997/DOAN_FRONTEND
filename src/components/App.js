@@ -1,13 +1,14 @@
-import Header from './Header'
+import Header from './AdminCatologies'
 import Main from './Main'
-import Home from './Home'
+import ListProduct from './ListProduct'
 import React, {Component} from 'react';
 import Footer from './Footer'
 import AdminDashboard from "./AdminDashboard";
 import Login from "./login";
-import ProductLayout from "./productLayout";
+import ProductLayout from "./AllProduct";
 import Route from "./router";
 import Register from "./register"
+import Error from "./Error"
 
 class App extends Component {
 
@@ -18,11 +19,13 @@ class App extends Component {
     
     render()
     {
+        var token = window.localStorage.getItem('access_token');
         return(
-        <div >
-                <Route/>
-        </div>
-        );
+            <div >
+                    <Route/>
+                    {/*{token ? <Footer/> : null}*/}
+            </div>
+            )
     }
 
 

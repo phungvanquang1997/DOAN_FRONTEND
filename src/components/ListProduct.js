@@ -1,6 +1,6 @@
 import React from 'react';
  
-class Home extends React.Component {
+class ListProduct extends React.Component {
 
     constructor(props) {
         super(props);
@@ -378,14 +378,15 @@ class Home extends React.Component {
                                             <input ref={input => this.img_linkEdit = input} type="text" value={this.state.img_link}onChange={this.handlerChangeImg} className="form-control" name="txtNSX" placeholder="..."/>
                                         </div>
 
-
-                                            <button type="button" onClick={this.handlerUpdate.bind(this,item.ProID)} className="btn btn-primary"
+                                        <div className="text-center">
+                                            <button type="button" onClick={this.handlerUpdate.bind(this,item.ProID)} className="btn btn-success"
                                                     data-dismiss="modal">Update
                                             </button>
 
                                             <button type="button" className="btn btn-danger"
                                                     data-dismiss="modal">Close
                                             </button>
+                                        </div>
                                     </div>
                                     )}
                             </div>
@@ -429,6 +430,6 @@ class Home extends React.Component {
 }
 
 
-export default Home
+export default ListProduct
 
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Home from './Home'
-import Roster from './Roster'
+import ListProduct from './ListProduct'
 import User from './User'
 import Login from './login'
 import Register from './register';

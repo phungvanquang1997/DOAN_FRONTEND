@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // between routes.
 
 
-class ProductHeader extends React.Component
+class ProductCatologies extends React.Component
 {
 
     constructor(props) {
@@ -16,10 +16,10 @@ class ProductHeader extends React.Component
     {
         return(
             <nav className="col-md-2 d-none d-md-block border-inset sidebar">
-                <div className="sidebar-sticky bgHeader border-inset">
+                <div className="sidebar-sticky border-inset">
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                            <Link to='/register' className="nav-link" >
+                            <Link to='/' className="nav-link" >
                                 <span data-feather="file"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -27,11 +27,11 @@ class ProductHeader extends React.Component
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                     <polyline points="13 2 13 9 20 9"></polyline>
                                 </svg>
-                                Đăng ký
+                                Item 1
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/login' className="nav-link">
+                            <Link to='/' className="nav-link">
                                 <span data-feather="shopping-cart"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -41,11 +41,11 @@ class ProductHeader extends React.Component
                                     <path
                                         d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                 </svg>
-                                Đăng nhập
+                                Item 2
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/listUser' className="nav-link" >
+                            <Link to='/' className="nav-link" >
                                 <span data-feather="users"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -55,7 +55,7 @@ class ProductHeader extends React.Component
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
-                                Danh sách khách hàng
+                                Item 3
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -124,4 +124,4 @@ class ProductHeader extends React.Component
         )
     }
 }
-export default ProductHeader
+export default ProductCatologies

@@ -1,6 +1,5 @@
 import React from 'react'
-import ProductHeader from "./ProductHeader";
-import ProductLayout from "./productLayout"
+
 
 class register extends React.Component {
 
@@ -42,11 +41,12 @@ class register extends React.Component {
     render()
     {
         return(
-            <div className="bg-img">
-                <div className="col-md-2">
+            <div >
+                <div className="col-md-3">
                 </div>
 
-                <div className="col-md-6 col bg-img">
+                <div className="col-md-5 col">
+                    <h3 className="text-center fontcolor">Đăng ký thành viên</h3>
                     <div className="form-group">
                         <label htmlFor="txtHoTen">Họ tên</label>
                         <input type="text"  ref={input=>this.f_Name = input}   className="form-control" id="txtHoTen" name="txtHoTen"/>
@@ -101,11 +101,12 @@ class register extends React.Component {
 
                     <br/>
 
-
-                    <button onClick={this.handlerRegister.bind(this)} className="btn btn-success btn-block" name="btnRegister">
-                        <span className="glyphicon glyphicon-user"></span>
-                        Đăng kí
-                    </button>
+                    <div>
+                        <button onClick={this.handlerRegister.bind(this)} className="btn btn-success btn-block " name="btnRegister">
+                            <span className="glyphicon glyphicon-user"></span>
+                            Đăng kí
+                        </button>
+                    </div>
                 </div>
             </div>
         )
