@@ -281,9 +281,9 @@ class ListProduct extends React.Component {
                                             </div>
 
                                             <div className="form-group">
-                                                <label htmlFor="txtFullDes" ref={input => this.Fulldes = input} className="control-label bold">Chi tiết</label>
+                                                <label htmlFor="txtFullDes"  className="control-label bold">Chi tiết</label>
                                                 <div className="col-sm-12">
-                                          <textarea rows="4" id="txtFullDes" name="txtFullDes"
+                                          <textarea rows="4" id="txtFullDes" name="txtFullDes" ref={input => this.Fulldes = input}
                                           className="form-control"/>
                                                 </div>
                                             </div>
