@@ -7,7 +7,7 @@ import Admin from "./Admin"
 import RouteHome from "./RouteHome"
 import RouteError from "./RouteError";
 import AllProduct from "./AllProduct";
-
+import Producer from "./ProductByIDProducer"
 
 const Index = () =>
     (
@@ -31,12 +31,16 @@ const  RouteConfig =() =>
             {/*gọi layout*/}
             <Route exact path="/home/register" component={AllProduct}/>
            <Route exact path="/home/login" component={AllProduct}/>
+            <Route exact path="/home/producer/:number" component={AllProduct}/>
 
             <Route exact path='/admin/listUser' component={AdminDashboard}/>
             <Route exact path='/admin/listUser/:number' component={AdminDashboard}/>
 
             <Route exact path='/admin/order/' component={AdminDashboard}/>
             <Route exact path='/admin/order/:number' component={AdminDashboard}/>
+
+            <Route exact path='/admin/producer/' component={AdminDashboard}/>
+
             <Route component ={RouteError}></Route>
         </Switch>
     );

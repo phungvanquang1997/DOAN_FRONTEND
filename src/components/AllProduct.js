@@ -61,7 +61,7 @@ class allProduct extends React.Component
                                 </div>
 
 
-                                <MainProducts />
+                                <MainProducts/>
 
 
                             </main>

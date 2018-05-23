@@ -10,6 +10,7 @@ class ListProduct extends React.Component {
             isLoaded: false,
             list: [],
             listID: [], // Lấy sản phẩm dựa theo id sản phẩm
+            listProducer : [],
             ProName : "abc",
             TinyDes : "",
             FullDes : "",
@@ -26,10 +27,36 @@ class ListProduct extends React.Component {
         this.handlerChangePrice = this.handlerChangePrice.bind(this);
         this.handlerChangeFullDes=this.handlerChangeFullDes.bind(this);
         this.handlerChangeTinyDes = this.handlerChangeTinyDes.bind(this);
+        this.GetListProducer = this.GetListProducer.bind(this);
+    }
+
+    GetListProducer()
+    {
+        console.log("vô đây r");
+        var token = window.localStorage.getItem('access_token');
+        var url = "http://localhost:3001/nsx/nsx";
+        fetch(url,{
+            "async": true,
+            "method": "GET",
+            "headers": {
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+        }).then(res=>res.json())
+            .
+            then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listProducer : result
+                    });
+                    console.log(result);
+                })
     }
 
     handleclick()
     {
+
         var token = window.localStorage.getItem('access_token');
         var d = new Date();
         var Now = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay();
@@ -89,8 +116,29 @@ class ListProduct extends React.Component {
     }
 
     componentDidMount() {
-        var url = "http://localhost:3001/api/BanHang/"
         var token = window.localStorage.getItem('access_token');
+        var url1 = "http://localhost:3001/nsx/nsx";
+
+        fetch(url1,{
+            "async": true,
+            "method": "GET",
+            "headers": {
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+        }).then(res=>res.json())
+            .
+            then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listProducer : result
+                    });
+                    console.log(result);
+                })
+
+
+        var url = "http://localhost:3001/api/BanHang/"
         console.log(token);
 
         //gửi json nên để header 'Content-Type': 'application/json'
@@ -116,10 +164,14 @@ class ListProduct extends React.Component {
                     });
                 })
 
+
+
     }
+
 
     handlerUpdate(i)
     {
+        this.GetListProducer();
         var token = window.localStorage.getItem('access_token');
         var req = "http://localhost:3001/api/BanHang/"+i;
         fetch(req, {
@@ -145,6 +197,7 @@ class ListProduct extends React.Component {
 
     handlerGetData(i)
     {
+
         var url = "http://localhost:3001/api/BanHang/"+i;
         var token = window.localStorage.getItem('access_token');
         console.log(token);
@@ -171,8 +224,9 @@ class ListProduct extends React.Component {
                         img_link : result[0].img_link
                     });
 
-                },
+                }
                 )
+
     }
 
 
@@ -235,7 +289,7 @@ class ListProduct extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, list,listID} = this.state;
+        const {error, isLoaded, list,listID,listProducer} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -295,10 +349,20 @@ class ListProduct extends React.Component {
                                                 <label htmlFor="exampleInputEmail1"className="bold">Số lượng</label>
                                                 <input ref={input => this.Quantity = input} type="text" className="form-control" name="txtQuantity" placeholder="10"/>
                                             </div>
-                                            <div className="form-group">
+                                           <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1"className="bold">Nhà sản xuất</label>
-                                                <input type="text" ref={input => this.nsx = input} className="form-control" name="txtNSX" placeholder="..."/>
-                                            </div>
+
+                                                <br/>
+                                               <select >
+                                                   {listProducer.map(items=>(
+
+                                                       <option className="text-center   " key={items.IDnsx} value={items.IDnsx}>{items.TenNSX}</option>
+
+                                                   ))}
+                                               </select>
+
+
+                                           </div>
                                             <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1"className="bold">Link hình sản phẩm</label>
                                                 <input ref={input => this.img_link = input} type="text" className="form-control" name="txtNSX" placeholder="..."/>

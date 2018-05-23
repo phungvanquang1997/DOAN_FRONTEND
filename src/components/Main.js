@@ -8,6 +8,8 @@ import Admin from "./Admin";
 import UserDetail from "./UserDetail";
 import ListUser from "./ListUser";
 import ListOrders from "./ListOrders";
+import ListProducer from "./ListProducer";
+
 const Main = () => (
   <main>
     <Switch>
@@ -20,7 +22,7 @@ const Main = () => (
 
         <Route exact path='/admin/listUser' component={ListUser}/>
         <Route exact path='/admin/listUser/:number' component={UserDetail}/>
-
+        <Route exact path='/admin/producer' component={ListProducer}/>
     </Switch>
   </main>
 )

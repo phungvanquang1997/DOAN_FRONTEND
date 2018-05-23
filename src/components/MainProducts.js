@@ -4,7 +4,8 @@ import ListProduct from './ListProduct'
 import User from './User'
 import Login from './login'
 import Register from './register';
-
+import ListProductClient from "./ListProductClient";
+import ProductByIDProducer from "./ProductByIDProducer";
 class Main extends React.Component {
 
     constructor(props) {
@@ -19,8 +20,11 @@ class Main extends React.Component {
 
             <main>
                 <Switch>
-                    <Route path='/home/register' component={Register}/>
-                    <Route path='/home/login' component={Login}/>
+                    <Route exact path='/home/register' component={Register}/>
+                    <Route exact path='/home/login' component={Login}/>
+                    <Route exact path='/home/producer/:number' component={ProductByIDProducer}/>
+
+                    <Route exact path = "/" component ={ListProductClient}/>
                 </Switch>
             </main>
         )

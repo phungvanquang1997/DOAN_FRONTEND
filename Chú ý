@@ -1,0 +1,3 @@
+ComponentDidMount -> load 1 lần duy nhất
+ComponentDidUpdate -> cập nhật khi props thay đổi
+vd : sử dụng cho : localhost/producer/1 -> localhost/producer/2 -> khi đọc params trên url
