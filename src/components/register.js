@@ -35,6 +35,8 @@ class register extends React.Component {
         }).then(console.log("Created"));
         this.setState({isHidden:'visible'});
 
+        this.f_Username.value =  this.f_Password.value = this.f_Name.value = this.f_Email.value = this.f_DiaChi.value = null;
+
     }
 
 

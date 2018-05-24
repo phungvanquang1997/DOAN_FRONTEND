@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 class ListProductClient extends React.Component {
 
@@ -83,7 +84,7 @@ class ListProductClient extends React.Component {
     }
 
     componentDidMount() {
-        var url = "http://localhost:3001/api/BanHang/"
+        var url = "http://localhost:3001/api/BanHang/";
 
         //gửi json nên để header 'Content-Type': 'application/json'
         fetch(url,{
@@ -155,6 +156,7 @@ class ListProductClient extends React.Component {
 
     render() {
         const {error, isLoaded, list,listID} = this.state;
+
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -169,18 +171,20 @@ class ListProductClient extends React.Component {
                             <div className="row">
                                 {list.map(item=>(
 
-                                    <div className="col-md-6" key={item.id}>
+                                    <div className="col-md-6" key={item.ProID}>
                                         <div className="thumbnail">
                                         <div className="caption">
                                             <img width="350"
-                                                 height="350" src={item.img_link} alt={item.id}/>
+                                                 height="350" src={item.img_link} alt={item.ProID}/>
                                         <br/>
                                         <p>
-                                        <a className="btn btn-primary" role="button">Chi tiết</a>
+                                            <Link to={"/home/ProductDetail/"+item.ProID} className="btn btn-primary fontwhite" role="button"><span className="fontwhite"> Chi tiết</span></Link>
     
-                                        <a className="btn btn-danger" role="button" name ="btnDatMua">
-                                        <span className="glyphicon glyphicon-shopping-cart"></span>
-                                        Đặt mua
+                                        <a className="btn btn-danger text-center" role="button" name ="btnDatMua">
+
+                                            <span className="glyphicon glyphicon-shopping-cart fontwhite"></span>
+                                            <span className="fontwhite">Đặt mua</span>
+
                                         </a>
     
                                         <a className="btn btn-default" role = "button">
@@ -189,7 +193,7 @@ class ListProductClient extends React.Component {
                                             </a>
                                                 <a className="btn btn-default" role = "button">
                                                 <span className="glyphicon glyphicon-ok-circle"></span>
-                                                Bán : {item.Quantity}
+                                                Hiện còn : {item.Quantity}
                                                 </a>
                                             </p>
                                         </div>

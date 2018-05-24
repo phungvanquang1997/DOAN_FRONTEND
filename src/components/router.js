@@ -32,6 +32,7 @@ const  RouteConfig =() =>
             <Route exact path="/home/register" component={AllProduct}/>
            <Route exact path="/home/login" component={AllProduct}/>
             <Route exact path="/home/producer/:number" component={AllProduct}/>
+            <Route exact path='/home/ProductDetail/:number' component={AllProduct}/>
 
             <Route exact path='/admin/listUser' component={AdminDashboard}/>
             <Route exact path='/admin/listUser/:number' component={AdminDashboard}/>
@@ -40,6 +41,8 @@ const  RouteConfig =() =>
             <Route exact path='/admin/order/:number' component={AdminDashboard}/>
 
             <Route exact path='/admin/producer/' component={AdminDashboard}/>
+
+
 
             <Route component ={RouteError}></Route>
         </Switch>

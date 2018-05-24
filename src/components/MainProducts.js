@@ -6,6 +6,8 @@ import Login from './login'
 import Register from './register';
 import ListProductClient from "./ListProductClient";
 import ProductByIDProducer from "./ProductByIDProducer";
+import ProductDetail from "./ProductDetail";
+
 class Main extends React.Component {
 
     constructor(props) {
@@ -23,7 +25,7 @@ class Main extends React.Component {
                     <Route exact path='/home/register' component={Register}/>
                     <Route exact path='/home/login' component={Login}/>
                     <Route exact path='/home/producer/:number' component={ProductByIDProducer}/>
-
+                    <Route exact path='/home/ProductDetail/:number' component={ProductDetail}/>
                     <Route exact path = "/" component ={ListProductClient}/>
                 </Switch>
             </main>

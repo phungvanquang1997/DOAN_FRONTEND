@@ -9,6 +9,7 @@ body {
 }
 
 
+
 .color-red
 {
     color: red;
@@ -70,6 +71,11 @@ h1.page-header {
 {
     width: 250px;
     height: 250px;
+}
+
+.fontwhite
+{
+    color: white !important;
 }
 
 .margin0auto

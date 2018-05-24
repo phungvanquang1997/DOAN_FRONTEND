@@ -72,7 +72,7 @@ class ListProduct extends React.Component {
                 View:'0',
                 SoLuongBan:'0',
                 NgayNhap: Now.toString(),
-                NSX : this.nsx.value,
+                NSX : this.NSX.value,
                 img_link : this.img_link.value,
             }),
             headers: {
@@ -82,6 +82,9 @@ class ListProduct extends React.Component {
         }).catch(error => this.reload())
             .then(response => this.reload());
         // vẫn bị lỗi khi tạo JSON
+        this.ProName.value = this.Tinydes.value = this.Fulldes.value = this.Price.value=  this.Quantity.value = this.img_link.value =null ;
+
+
     }
 
 
@@ -353,7 +356,7 @@ class ListProduct extends React.Component {
                                                 <label htmlFor="exampleInputEmail1"className="bold">Nhà sản xuất</label>
 
                                                 <br/>
-                                               <select >
+                                               <select ref={select => this.NSX = select}>
                                                    {listProducer.map(items=>(
 
                                                        <option className="text-center   " key={items.IDnsx} value={items.IDnsx}>{items.TenNSX}</option>

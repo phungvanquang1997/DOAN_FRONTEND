@@ -14,6 +14,7 @@ class allProduct extends React.Component
         super(props);
         this.state = {
             show:true,
+            Run:true,
         }
     }
     render(){
@@ -22,7 +23,7 @@ class allProduct extends React.Component
 
                 <div className="bg-light">
                     <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-                        <Link to ="#" className="navbar-brand col-sm-3 col-md-2 mr-0">Quang's shop</Link>
+                        <Link to ="/" className="navbar-brand col-sm-3 col-md-2 mr-0">Quang's shop</Link>
                         <input className="form-control form-control-dark w-100" type="text" placeholder="Search"
                                aria-label="Search"/>
                         <Link to='/home/register' className="nav-link" >

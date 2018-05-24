@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 class ProductByIDProducer extends React.Component {
 
@@ -8,13 +9,46 @@ class ProductByIDProducer extends React.Component {
         this.state = {
             error: false,
             isLoaded: false,
-            list: [], // Lấy sản phẩm dựa theo id sản phẩm
+            list: [],
+            value:0,// Lấy sản phẩm dựa theo id sản phẩm
         }
      /*   this.reload = this.reload.bind(this);*/
     }
 
+    componentDidMount() {
+        var id =  this.props.match.params.number;
+        var url = "http://localhost:3001/api/BanHang/producer/"+id;
+        console.log(url);
+        //gửi json nên để header 'Content-Type': 'application/json'
+        fetch(url,{
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'},
+        }).then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        list: result
+                    });
+                },
+
+                (error) => {
+                    console.log("error cmnr");
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                })
+
+    }
+ /*   shouldComponentUpdate(nextProps, nextState){
+        return this.props !== nextProps;
+    }*/
 
     componentDidUpdate() {
+
+
           var id =  this.props.match.params.number;
         var url = "http://localhost:3001/api/BanHang/producer/"+id;
         console.log(url);
@@ -60,18 +94,20 @@ class ProductByIDProducer extends React.Component {
                             <div className="row">
                                 {list.map(item=>(
 
-                                    <div className="col-md-6" key={item.id}>
+                                    <div className="col-md-6" key={item.ProID}>
                                         <div className="thumbnail">
                                             <div className="caption">
                                                 <img width="350"
-                                                     height="350" src={item.img_link} alt={item.id}/>
+                                                     height="350" src={item.img_link} alt={item.ProID}/>
                                                 <br/>
                                                 <p>
-                                                    <a className="btn btn-primary" role="button">Chi tiết</a>
+                                                    <Link to={"/home/ProductDetail/"+item.ProID} className="btn btn-primary fontwhite" role="button"><span className="fontwhite"> Chi tiết</span></Link>
 
-                                                    <a className="btn btn-danger" role="button" name ="btnDatMua">
-                                                        <span className="glyphicon glyphicon-shopping-cart"></span>
-                                                        Đặt mua
+                                                    <a className="btn btn-danger text-center" role="button" name ="btnDatMua">
+
+                                                        <span className="glyphicon glyphicon-shopping-cart fontwhite"></span>
+                                                        <span className="fontwhite">Đặt mua</span>
+
                                                     </a>
 
                                                     <a className="btn btn-default" role = "button">
@@ -80,7 +116,7 @@ class ProductByIDProducer extends React.Component {
                                                     </a>
                                                     <a className="btn btn-default" role = "button">
                                                         <span className="glyphicon glyphicon-ok-circle"></span>
-                                                        Bán : {item.Quantity}
+                                                        Hiện còn : {item.Quantity}
                                                     </a>
                                                 </p>
                                             </div>
