@@ -10,6 +10,7 @@ import Route from "./router";
 import Register from "./register"
 import Error from "./Error"
 
+
 class App extends Component {
 
     constructor() {
@@ -19,11 +20,10 @@ class App extends Component {
     
     render()
     {
-        var token = window.localStorage.getItem('access_token');
+
         return(
             <div >
                     <Route/>
-                    {/*{token ? <Footer/> : null}*/}
             </div>
             )
     }
