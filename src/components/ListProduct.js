@@ -11,6 +11,7 @@ class ListProduct extends React.Component {
             list: [],
             listID: [], // Lấy sản phẩm dựa theo id sản phẩm
             listProducer : [],
+            listOrigin: [],
             ProName : "abc",
             TinyDes : "",
             FullDes : "",
@@ -18,6 +19,8 @@ class ListProduct extends React.Component {
             Quantity : "",
             NSX : "",
             img_link : "",
+            OriginID : "",
+
         }
         this.reload = this.reload.bind(this);
         this.handlerChangeProName = this.handlerChangeProName.bind(this);
@@ -28,11 +31,12 @@ class ListProduct extends React.Component {
         this.handlerChangeFullDes=this.handlerChangeFullDes.bind(this);
         this.handlerChangeTinyDes = this.handlerChangeTinyDes.bind(this);
         this.GetListProducer = this.GetListProducer.bind(this);
+        this.handlerChangeOrigin = this.handlerChangeOrigin.bind(this);
     }
 
     GetListProducer()
     {
-        console.log("vô đây r");
+
         var token = window.localStorage.getItem('access_token');
         var url = "http://localhost:3001/nsx/nsx";
         fetch(url,{
@@ -68,7 +72,7 @@ class ListProduct extends React.Component {
                 FullDes : this.Fulldes.value,
                 Price : this.Price.value,
                 Quantity : this.Quantity.value,
-                OriginID:'1',
+                OriginID: this.OriginID.value,
                 View:'0',
                 SoLuongBan:'0',
                 NgayNhap: Now.toString(),
@@ -138,7 +142,28 @@ class ListProduct extends React.Component {
                         listProducer : result
                     });
                     console.log(result);
-                })
+                });
+        //-------------------------------------------------
+
+        var url2 = "http://localhost:3001/Origin/";
+        fetch(url2,{
+            "async": true,
+            "method": "GET",
+            "headers": {
+                "Cache-Control": "no-cache",
+                "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
+        }).then(res=>res.json())
+            .
+            then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listOrigin : result
+                    });
+                    console.log(result);
+                });
+
+        //-------------------------------------------------
 
 
         var url = "http://localhost:3001/api/BanHang/"
@@ -191,8 +216,9 @@ class ListProduct extends React.Component {
                 FullDes : this.FulldesEdit.value,
                 Price : this.PriceEdit.value,
                 Quantity : this.QuantityEdit.value,
-                NSX : this.nsxEdit.value,
+                NSX : this.NSXedit.value,
                 img_link : this.img_linkEdit.value,
+                OriginID : this.OriginIDedit.value,
             })
         }).then(console.log("OK"))
     }
@@ -224,7 +250,8 @@ class ListProduct extends React.Component {
                         Price : result[0].Price,
                         Quantity : result[0].Quantity,
                         NSX : result[0].NSX,
-                        img_link : result[0].img_link
+                        img_link : result[0].img_link,
+                        OriginID : result[0].OriginID,
                     });
 
                 }
@@ -268,6 +295,12 @@ class ListProduct extends React.Component {
         });
     }
 
+    handlerChangeOrigin(event) {
+        this.setState({
+            OriginID : event.target.value,
+        });
+    }
+
     handlerChangeNSX(event) {
         this.setState({
             NSX : event.target.value,
@@ -292,7 +325,8 @@ class ListProduct extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, list,listID,listProducer} = this.state;
+        const {error, isLoaded, list,listID,listProducer,listOrigin} = this.state;
+        console.log(listOrigin);
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -352,15 +386,28 @@ class ListProduct extends React.Component {
                                                 <label htmlFor="exampleInputEmail1"className="bold">Số lượng</label>
                                                 <input ref={input => this.Quantity = input} type="text" className="form-control" name="txtQuantity" placeholder="10"/>
                                             </div>
+                                            <div className="form-group">
+                                                <label htmlFor="exampleInputEmail1"className="bold">Quốc gia</label>
+
+                                                <br/>
+                                                <select id="select" ref={select => this.OriginID = select}>
+                                                    {listOrigin.map(itemOrigin=>(
+
+                                                        <option className="text-center   " key={itemOrigin.OriginID} value={itemOrigin.OriginID}>{itemOrigin.OriginName}</option>
+
+                                                    ))}
+                                                </select>
+
+
+                                            </div>
                                            <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1"className="bold">Nhà sản xuất</label>
 
                                                 <br/>
-                                               <select ref={select => this.NSX = select}>
+                                               <select id="select" ref={select => this.NSX = select}>
                                                    {listProducer.map(items=>(
 
                                                        <option className="text-center   " key={items.IDnsx} value={items.IDnsx}>{items.TenNSX}</option>
-
                                                    ))}
                                                </select>
 
@@ -436,10 +483,47 @@ class ListProduct extends React.Component {
                                             <label htmlFor="exampleInputEmail1"className="bold">Số lượng</label>
                                             <input ref={input => this.QuantityEdit = input}  value={this.state.Quantity} onChange={this.handlerChangeQuantity} type="text" className="form-control" name="txtQuantity" placeholder="10"/>
                                         </div>
-                                        <div className="form-group">
+                                       {/* <div className="form-group">
                                             <label htmlFor="exampleInputEmail1"className="bold">Nhà sản xuất</label>
                                             <input type="text" ref={input => this.nsxEdit = input} value={this.state.NSX}onChange={this.handlerChangeNSX} className="form-control" name="txtNSX" placeholder="..."/>
+                                        </div>*/}
+
+                                        <div className="form-group">
+                                            <select id="select" ref={select => this.OriginIDedit = select}>
+
+                                                {listOrigin.map(itemOri=>(
+                                                    <React.Fragment>
+                                                        {itemOri.OriginID === this.state.OriginID  ?
+                                                            <option selected className="text-center" value={itemOri.OriginID}> {itemOri.OriginName}</option>
+                                                            :
+                                                            null
+                                                        }
+                                                        <option className="text-center" key={itemOri.OriginID} value={itemOri.OriginID}> {itemOri.OriginName}</option>
+                                                    </React.Fragment>
+
+                                                ))}
+                                            </select>
                                         </div>
+
+
+                                        <div className="form-group">
+                                            <select id="select" ref={select => this.NSXedit = select}>
+
+
+                                                {listProducer.map(itemnsx=>(
+                                                    <React.Fragment>
+                                                    {itemnsx.IDnsx === this.state.NSX  ?
+                                                        <option selected className="text-center" value={itemnsx.IDnsx}> {itemnsx.TenNSX}</option>
+                                                            :
+                                                        null
+                                                    }
+                                                        <option className="text-center" key={itemnsx.IDnsx} value={itemnsx.IDnsx}> {itemnsx.TenNSX}</option>
+                                                    </React.Fragment>
+
+                                                ))}
+                                            </select>
+                                        </div>
+
                                         <div className="form-group">
                                             <label htmlFor="exampleInputEmail1"className="bold">Link hình sản phẩm</label>
                                             <input ref={input => this.img_linkEdit = input} type="text" value={this.state.img_link}onChange={this.handlerChangeImg} className="form-control" name="txtNSX" placeholder="..."/>

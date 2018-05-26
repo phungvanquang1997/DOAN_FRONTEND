@@ -17,8 +17,12 @@ class AdminDashboard extends React.Component
 
     SignOut()
     {
-        window.localStorage.removeItem("access_token"); // remove token là access token
+        window.localStorage.clear();
+/*        window.localStorage.removeItem("permission");
+        window.localStorage.removeItem("username");
+        window.localStorage.removeItem("access_token"); // remove token là access token*/
         document.location.href = "http://localhost:3000/"; // chuyển về trang index
+
     }
 
     render(){

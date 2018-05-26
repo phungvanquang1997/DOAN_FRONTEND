@@ -8,7 +8,7 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            access : "0",
+            access : null,
             isHidden: "hidden",
         }
     }
@@ -21,7 +21,7 @@ class Login extends React.Component {
         var url = "http://localhost:3001/login/login";
         fetch(url,{
             body: JSON.stringify({
-                ID: this.ID.value,
+                ID: this.username.value,
                 password : this.password.value,
             }),
             "method": "POST",
@@ -36,7 +36,11 @@ class Login extends React.Component {
             else {
                 window.localStorage.setItem('access_token', rs1.token);
                 token = window.localStorage.getItem('access_token');
+
+                window.localStorage.setItem('username', this.username.value); // lưu cho trang index load được đã đăng nhập hay chưa
+
                 this.sendToken(token);
+
             }
         });
 
@@ -61,11 +65,14 @@ class Login extends React.Component {
              .then(
                  (result) => {
                      this.setState({
-                         access: result // nhận đc res từ /secret
+                         access: result.isAdmin // nhận đc res từ /secret
                      });
-                     if(this.state.access != "0")
+
+                     window.localStorage.setItem('permission', result.isAdmin);
+                     window.localStorage.setItem('uid', result.uid);
+                     if(this.state.access !== null)
                      {
-                         document.location.href = "http://localhost:3000/admin";
+                         document.location.href = "http://localhost:3000/";
                      }
                  },
                  );
@@ -93,7 +100,7 @@ class Login extends React.Component {
                         <div className="form-group">
                             <div className="input-group">
                                 <span className="input-group-addon"><i className="fa fa-user"></i></span>
-                                <input type="text" className="form-control" ref={input => this.ID = input} name="username" placeholder="Username"
+                                <input type="text" className="form-control" ref={input => this.username = input} name="username" placeholder="Username"
                                        required="required"/>
                             </div>
                         </div>

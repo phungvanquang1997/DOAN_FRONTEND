@@ -12,7 +12,15 @@ body {
    padding-top: 60px;
 }
 
+.w80
+{
+    width: 75%;
+}
 
+.pdr30
+{
+    padding-right: 30px;
+}
 
 .color-red
 {
@@ -26,6 +34,24 @@ body {
     position: fixed;
     width: 100%;
 
+}
+
+
+#select{
+    width:100%;
+    height: 40px;
+    text-align: center;
+}
+
+#select option{
+    width:200px;
+}
+
+
+.w400h350
+{
+    width: 400px;
+    height: 350px;
 }
 
 .top0

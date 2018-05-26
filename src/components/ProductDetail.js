@@ -16,10 +16,12 @@ class ProductDetail extends React.Component {
             list5item:[],
             list5:[],
             isHidden : "hidden",
+            listIMG : [],
             value: this.props.match.number,
         }
         this.Get5ItemProduct = this.Get5ItemProduct.bind(this);
         this.Get5ItemProductTheSameType = this.Get5ItemProductTheSameType.bind(this);
+        this.GetListIMG = this.GetListIMG.bind(this);
 
     }
 
@@ -79,12 +81,12 @@ class ProductDetail extends React.Component {
             )
     }
 
-    shouldComponentUpdate(nextProps, nextState){
+   /* shouldComponentUpdate(nextProps, nextState){
         if(this.props.match.params.number!==nextProps.match.params.number+1)
              return true ;
         return false;
 
-    }
+    }*/
 
     /*componentDidUpdate()
     {
@@ -120,6 +122,38 @@ class ProductDetail extends React.Component {
 
     }*/
 
+
+    GetListIMG()
+    {
+        var ID = this.props.match.params.number;
+        var url = "http://localhost:3001/listImg/"+ID;
+        fetch(url, {
+            mode: "cors",
+            method : "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listIMG: result
+                    });
+                },
+
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );
+
+    }
+
+
     componentDidMount()
     {
         var ID = this.props.match.params.number;
@@ -141,6 +175,7 @@ class ProductDetail extends React.Component {
                     console.log(this.state.list);
                     this.Get5ItemProduct();
                     this.Get5ItemProductTheSameType();
+                    this.GetListIMG();
                 },
 
                 (error) => {
@@ -151,9 +186,6 @@ class ProductDetail extends React.Component {
                     });
                 }
             );
-
-        this.props.match.number = 1;
-
     }
 
     handlerView(i)
@@ -164,22 +196,14 @@ class ProductDetail extends React.Component {
 
     render()
     {
-        const {list,list5item,list5} = this.state;
-    /*    if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
-            return <div>Loading...</div>;
-
-        }
-        else*/
-            // Tạo thêm list img để tạo slide
-            var listIMG = ["http://localhost:8080/DoAnWeb/imgs/sp/20/main.jpg","http://localhost:8080/DoAnWeb/imgs/sp/5/main.jpg","http://localhost:8080/DoAnWeb/imgs/sp/16/main.jpg","http://localhost:8080/DoAnWeb/imgs/sp/19/main.jpg"];
+        const {list,list5item,list5,listIMG} = this.state;
+        //             // Tạo thêm list img để tạo slide
             return(
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     {list.map(item=>(
                         <div>
-                            <div id="myCarousel" className="carousel slide" data-ride="carousel">
+                            <div id="myCarousel" className="carousel slide text-center" data-ride="carousel">
                                 <ol className="carousel-indicators">
                                     <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
                                     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -190,21 +214,26 @@ class ProductDetail extends React.Component {
                                 <div className="carousel-inner" role="listbox">
 
                                     <div className="item active">
-                                        <img src={listIMG[0]} alt="Chania" width="800" height="345"/>
+                                        <img src={item.img_link} alt="Chania" width="400" height="350"/>
                                             <div className="carousel-caption">
                                                 <h3>Chania</h3>
-                                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
                                             </div>
                                     </div>
-                                    {listIMG.map(imgItem=>(
+                               {listIMG.map(imgItem=>(
+                                    <React.Fragment>
+                                        <div className="item">
+                                            <img width="500" height="345" src={imgItem.img_1} alt="Chania"/>
 
-                                    <div className="item">
-                                        <img width="800" height="345" src={imgItem} alt="Chania"/>
-                                            <div className="carousel-caption">
-                                                <h3>Chania</h3>
-                                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                                            </div>
-                                    </div>
+                                        </div>
+
+                                       <div className="item " >
+                                           <img  width="500" height="345" src={imgItem.img_2} alt="Chania"/>
+                                       </div>
+                                        <div className="item">
+                                            <img  width="500" height="345" src={imgItem.img_3} alt="Chania"/>
+                                        </div>
+                                    </React.Fragment>
+
                                     ))}
 
 
