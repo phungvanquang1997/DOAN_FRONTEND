@@ -29,6 +29,15 @@ body {
     font-weight: bold;
 }
 
+.size18
+{
+    font-size: 18px;
+}
+.bg-red
+{
+    background: #ff3651;
+}
+
 .p-fixed
 {
     position: fixed;

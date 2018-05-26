@@ -25,12 +25,31 @@ class AdminDashboard extends React.Component
 
     }
 
+/*    componnentDidMount()
+    {var
+    }*/
+
     render(){
         var token = window.localStorage.getItem('access_token');
+        var permission = window.localStorage.getItem('permission');
+        console.log("quyền : " + permission);
+
         if(!token)
         {
             return(
                 <Error/>
+            )
+        }
+        if(permission==0)
+        {
+            return(
+                <div>
+                    <div className="text-center bold size24 fontcolor">
+                        Bạn không có quyền truy cập vào trang này !!!
+
+                    </div>
+                    <Link to ='/' className="text-center">Back</Link>
+                </div>
             )
         }
         else

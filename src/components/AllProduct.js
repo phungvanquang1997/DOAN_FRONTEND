@@ -16,8 +16,16 @@ class allProduct extends React.Component
             isLogin : false,
             Username : "",
             isAdmin : false,
+            bgforAdmin : "bg-red",
+            QueryStr : "",
         }
        this.logout=  this.logout.bind(this);
+        this.Search = this.Search.bind(this);
+    }
+
+    Search()
+    {
+        document.location.href = "http://localhost:3000/home/Search/"+this.QueryStr.value;
     }
 
     logout()
@@ -35,7 +43,7 @@ class allProduct extends React.Component
             this.setState({Username: window.localStorage.getItem('username'), isLogin: true});
         }
 
-        if(window.localStorage.getItem('permission')==1) {
+        if(window.localStorage.getItem('permission')===1) {
             this.setState({isAdmin: true , isLogin: true});
         }
         console.log(window.localStorage.getItem('permission'));
@@ -48,30 +56,32 @@ class allProduct extends React.Component
                 <div className="bg-light">
                     <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
                         <Link to ="/" className="navbar-brand col-sm-3 col-md-2 mr-0">Quang's shop</Link>
-                        <input className="form-control form-control-dark w80" type="text" placeholder="Search"
+                        <input ref={input=>this.QueryStr = input} className="form-control form-control-dark w80" type="text" placeholder="Search"
                                aria-label="Search"/>
 
-                            <Link to='/home/register' className="nav-link" >
-                            <div className="navbar-nav px-2">
-                                <button className="btn btn-primary">
-                                   Tìm kiếm
-                                </button>
-                            </div>
-                             </Link>
+                          {/*  <Link to={'/home/Search/'+this.state.QueryStr} className="nav-link" >*/}
+                                <div className="navbar-nav px-2">
+                                    <button className="btn btn-primary" onClick={this.Search}>
+                                       Tìm kiếm
+                                    </button>
+                                </div>
+                           {/*  </Link>*/}
 
-                        {this.state.isLogin == true?
+                        {this.state.isLogin === true?
 
                             <div className="dropdown pdr30">
-                                <button  className="btn btn-primary bold" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false"><b>Xin chào , {this.state.Username} !</b> <span
-                                    className="caret"></span>
+                                <button  className={this.state.isAdmin===true?"btn btn-primary bold bg-red" : "btn btn-primary bold"} data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                            <b>Xin chào , {this.state.Username} !</b> < span
+                                            className="caret"></span>
+
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/home/profile" >Thông tin cá nhân</Link></li>
                                     <li><a >Lịch sử mua hàng</a></li>
                                     <li><Link to="/home/ChangePassword">Đổi mật khẩu</Link></li>
 
-                                    {this.state.isAdmin == true ?
+                                    {this.state.isAdmin === true ?
                                         <React.Fragment>
                                              <li><Link to="/admin">Admin</Link></li>
                                         </React.Fragment>

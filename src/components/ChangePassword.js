@@ -47,6 +47,7 @@ class ChangePassword extends React.Component{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": "bearer " + token.toString(),
                 },
                 mode: 'cors',
                 body: JSON.stringify({
@@ -236,7 +237,7 @@ class ChangePassword extends React.Component{
 
 
                             </div>
-                        <Link to='/admin/listUser' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
+                        <Link to='/' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
                         <button type="button" className="btn btn-success" onClick={this.handlerUpdate.bind(this)}
                         >Đổi mật khẩu
                         </button>

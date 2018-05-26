@@ -489,6 +489,7 @@ class ListProduct extends React.Component {
                                         </div>*/}
 
                                         <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1"className="bold">Quốc gia</label>
                                             <select id="select" ref={select => this.OriginIDedit = select}>
 
                                                 {listOrigin.map(itemOri=>(
@@ -507,6 +508,7 @@ class ListProduct extends React.Component {
 
 
                                         <div className="form-group">
+                                            <label htmlFor="exampleInputEmail1"className="bold">Nhà sản xuất</label>
                                             <select id="select" ref={select => this.NSXedit = select}>
 
 
