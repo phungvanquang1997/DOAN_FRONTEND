@@ -1,11 +1,4 @@
 import React from 'react'
-import Header from "./AdminCatologies";
-import Main from "./Main";
-import ProductCatologies from "./ProductCatologies";
-import MainProducts from "./MainProducts";
-import { Link } from 'react-router-dom';
-import AdminDashboard from "./AdminDashboard";
-import Footer from "./Footer"
 import RouteError from "./RouteError"
 class Cart extends React.Component
 {
@@ -17,11 +10,41 @@ class Cart extends React.Component
             Username : "",
             isAdmin : false,
             CartItem : [],
+            isSuccess : "hidden"
         }
 
 
     }
 
+    Pay()
+    {
+        var d = new Date();
+        var Now = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay();
+
+        var token = window.localStorage.getItem('access_token');
+        var url = "http://localhost:3001/api/orders/pay";
+        fetch(url,{
+            async: true,
+            crossDomain: true,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "bearer " + token.toString(),
+            },
+            mode: 'cors',
+            body: JSON.stringify({
+                CurrentTime : Now,
+               Username : window.localStorage.getItem('username'),
+               SaveProduct : this.state.CartItem,
+            })
+        }).then(()=> {
+                this.setState({isSuccess: "visible"});
+                window.localStorage.removeItem("SaveProduct");
+                this.setState({CartItem : null});
+            }
+        )
+
+    }
 
     componentDidMount()
     {
@@ -42,6 +65,16 @@ class Cart extends React.Component
         {
             return(
                  <RouteError/>
+            )
+        }
+        if(this.state.CartItem==null || this.state.CartItem.length==0)
+        {
+            return(
+                <div className="col-md-12">
+                    <div className="text-center" role="alert">
+                        Giỏ hàng của bạn đang trống !!!
+                    </div>
+                </div>
             )
         }
         else {
@@ -97,6 +130,22 @@ class Cart extends React.Component
                         </React.Fragment>
                         </tbody>
                     </table>
+                    <div className="col-md-12">
+                            <div className="text-right">
+
+                                <button onClick={this.Pay.bind(this)} className="btn btn-success" role="button" name="btnDatMua">
+                                    <span className="glyphicon glyphicon-shopping-cart"></span>
+                                    Thanh Toán
+                                </button>
+
+                            </div>
+                    </div>
+
+                    <div className={this.state.isSuccess} id="pdtop20">
+                        <div className="alert alert-success" id="ThongBao" role="alert">
+                            <strong>Thanh toán thành công!</strong>.
+                        </div>
+                    </div>
                     <span>Không có giỏ hàng nào cả </span>
                 </div>
 
