@@ -8,6 +8,7 @@ import RouteHome from "./RouteHome"
 import RouteError from "./RouteError";
 import AllProduct from "./AllProduct";
 import Producer from "./ProductByIDProducer"
+import Cart from "./Cart";
 
 const Index = () =>
     (
@@ -36,6 +37,7 @@ const  RouteConfig =() =>
             <Route exact path='/home/profile' component={AllProduct}/>
             <Route exact path='/home/ChangePassword' component={AllProduct}/>
             <Route exact path='/home/Search/:QueryStr' component={AllProduct}/>
+            <Route exact path='/home/Cart' component={AllProduct}/>
 
 
             <Route exact path='/admin/listUser' component={AdminDashboard}/>

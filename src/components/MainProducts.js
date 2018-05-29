@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import ChangePassword from "./ChangePassword"
 import AllProduct from "./AllProduct";
 import Search from "./Search";
+import Cart from "./Cart";
 
 
 class Main extends React.Component {
@@ -34,6 +35,8 @@ class Main extends React.Component {
                     <Route exact path='/home/producer/:number' component={ProductByIDProducer}/>
                     <Route exact path='/home/ProductDetail/:number' component={ProductDetail}/>
                     <Route exact path='/home/Search/:QueryStr' component={Search}/>
+                    <Route exact path='/home/Cart' component={Cart}/>
+
                     <Route exact path = "/" component ={ListProductClient}/>
                 </Switch>
             </main>

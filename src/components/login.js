@@ -38,7 +38,7 @@ class Login extends React.Component {
                 token = window.localStorage.getItem('access_token');
 
                 window.localStorage.setItem('username', this.username.value); // lưu cho trang index load được đã đăng nhập hay chưa
-
+                window.localStorage.setItem("SaveProduct",[]);
                 this.sendToken(token);
 
             }
@@ -119,6 +119,9 @@ class Login extends React.Component {
                             <label className="pull-left checkbox-inline"><input type="checkbox"/> Remember me</label>
                             <a href="#" className="pull-right text-success">Forgot Password?</a>
                         </div>
+                        <div className="hint-text small">Don't have an account? <Link to='/home/register' className="text-success">Register
+                            Now!</Link>
+                        </div>
                         <div className={this.state.isHidden} id="pdtop20">
                             <div className="alert alert-danger" id="ThongBao" role="alert">
                                 <strong>Tên đăng nhập hoặc mật khẩu không đúng !!</strong>.
@@ -132,9 +135,7 @@ class Login extends React.Component {
 
 
 
-                    <div className="hint-text small">Don't have an account? <a href="#" className="text-success">Register
-                        Now!</a>
-                    </div>
+
                 </div>
             </div>
         )};

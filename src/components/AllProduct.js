@@ -16,12 +16,14 @@ class allProduct extends React.Component
             isLogin : false,
             Username : "",
             isAdmin : false,
-            bgforAdmin : "bg-red",
             QueryStr : "",
+
         }
        this.logout=  this.logout.bind(this);
         this.Search = this.Search.bind(this);
     }
+
+
 
     Search()
     {
@@ -42,15 +44,21 @@ class allProduct extends React.Component
         if(window.localStorage.getItem('username')) {
             this.setState({Username: window.localStorage.getItem('username'), isLogin: true});
         }
-
-        if(window.localStorage.getItem('permission')===1) {
+        console.log(window.localStorage.getItem('permission')+"quyền");
+        if(window.localStorage.getItem('permission')==1) {
             this.setState({isAdmin: true , isLogin: true});
         }
-        console.log(window.localStorage.getItem('permission'));
     }
 
     render(){
+        var cartItem = 0;
+        if(window.localStorage.getItem("SaveProduct"))
+        {
+           cartItem = (JSON.parse(window.localStorage.getItem("SaveProduct")).length/4);
+        }
+
         return(
+
             <div className="top0">
 
                 <div className="bg-light">
@@ -68,13 +76,20 @@ class allProduct extends React.Component
                            {/*  </Link>*/}
 
                         {this.state.isLogin === true?
+                            <React.Fragment>
+                                <div className="navbar-nav px-2">
+                                    <Link to={'/home/Cart'} className="btn btn-primary">
+                                       Giỏ hàng của bạn({cartItem})
+                                    </Link>
+                                </div>
 
                             <div className="dropdown pdr30">
+
+
                                 <button  className={this.state.isAdmin===true?"btn btn-primary bold bg-red" : "btn btn-primary bold"} data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">
                                             <b>Xin chào , {this.state.Username} !</b> < span
                                             className="caret"></span>
-
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/home/profile" >Thông tin cá nhân</Link></li>
@@ -96,7 +111,7 @@ class allProduct extends React.Component
                                 </ul>
                             </div>
 
-
+                            </React.Fragment>
 
                             :
                                     <React.Fragment>
@@ -115,7 +130,9 @@ class allProduct extends React.Component
                                             </div>
                                         </Link>
                                     </React.Fragment>
+
                             }
+
                     </nav>
 
                     <div className="container-fluid bg-color">

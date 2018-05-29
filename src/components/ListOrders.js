@@ -143,6 +143,7 @@ class ListOrders extends React.Component {
                                 <th>Tổng tiền</th>
                                 <th>Trạng thái</th>
                                 <th>Tên khách hàng</th>
+                                <th>Số điện thoại</th>
                                 <th>
                                    #
                                 </th>
@@ -155,6 +156,7 @@ class ListOrders extends React.Component {
                                     <td>{item.Amount}</td>
                                     <td>{item.Status}</td>
                                     <td>{item.f_Name}</td>
+                                    <td>{item.f_SDT}</td>
                                     <td>
                                            {/*
 
