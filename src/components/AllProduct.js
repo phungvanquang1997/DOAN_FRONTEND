@@ -51,7 +51,7 @@ class allProduct extends React.Component
 
     render(){
         var cartItem = 0;
-        if(window.localStorage.getItem("SaveProduct"))
+       if(window.localStorage.getItem("SaveProduct"))
         {
            cartItem = (JSON.parse(window.localStorage.getItem("SaveProduct")).length/4);
         }
@@ -69,7 +69,9 @@ class allProduct extends React.Component
                           {/*  <Link to={'/home/Search/'+this.state.QueryStr} className="nav-link" >*/}
                                 <div className="navbar-nav px-2">
                                     <button className="btn btn-primary" onClick={this.Search}>
+
                                        Tìm kiếm
+
                                     </button>
                                 </div>
                            {/*  </Link>*/}
@@ -92,7 +94,7 @@ class allProduct extends React.Component
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/home/profile" >Thông tin cá nhân</Link></li>
-                                    <li><Link to="/home/Purchase" >Lịch sử mua hàng</Link></li>
+                                    <li><a >Lịch sử mua hàng</a></li>
                                     <li><Link to="/home/ChangePassword">Đổi mật khẩu</Link></li>
 
                                     {this.state.isAdmin === true ?
@@ -138,24 +140,29 @@ class allProduct extends React.Component
                         <div className="row">
                                 <ProductCatologies/>
                             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                                <div
-                                    className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom ">
-                                    <h1 className="h2">Nên ghi gì ở đây </h1>
+                                <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom ">
                                     <div className="btn-toolbar mb-2 mb-md-0">
-                                        <div className="btn-group mr-2">
-                                            <button className="btn btn-sm btn-outline-secondary">Share</button>
-                                            <button className="btn btn-sm btn-outline-secondary">Export</button>
+                                        <div className="pdr30">
+                                            <Link to='/home/BestSeller'  className="btn btn-sm btn-outline-secondary"role="button">
+                                                <b className="fa fa-bars fontsize20"> 10 sản phẩm bán chạy nhất</b> < span className="caret"></span>
+                                            </Link>
+                                           {/* <ul className="dropdown-menu">
+                                                <li><Link to="/home/profile" >10 sản phẩm bán chạy nhất</Link></li>
+                                                <li><a>10 sản phẩm mới nhất</a></li>
+                                                <li><Link to="/home/ChangePassword">10 sản phẩm được xem nhiều nhất</Link></li>
+                                            </ul>*/}
+                                            <Link to='/home/NewProducts'  className="btn btn-sm btn-outline-secondary" role="button">
+                                                <b className="fa fa-bars fontsize20"> 10 sản phẩm mới nhất</b> < span className="caret"></span>
+                                            </Link>
+                                            <Link to='/home/ProductViewest'  className="btn btn-sm btn-outline-secondary"role="button">
+                                                <b className="fa fa-bars fontsize20"> 10 sản phẩm được xem nhiều nhất</b> < span className="caret"></span>
+                                            </Link>
                                         </div>
-                                        <button className="btn btn-sm btn-outline-secondary dropdown-toggle">
-                                            <span data-feather="calendar"></span>
-                                            This week
-                                        </button>
                                     </div>
                                 </div>
 
 
                                 <MainProducts/>
-
 
                             </main>
                         </div>

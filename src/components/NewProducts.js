@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-class ProductByIDProducer extends React.Component {
+class ProductViewest extends React.Component {
 
     constructor(props) {
         super(props);
@@ -10,18 +10,43 @@ class ProductByIDProducer extends React.Component {
             error: false,
             isLoaded: false,
             list: [],
-            value:0,// Lấy sản phẩm dựa theo id sản phẩm
         }
-     /*   this.reload = this.reload.bind(this);*/
+        this.reload = this.reload.bind(this);
+    }
+
+
+    reload()
+    {
+        //gửi json nên để header 'Content-Type': 'application/json'
+        var url = "http://localhost:3001/api/BanHang/NewProducts";
+        fetch(url,{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        list: result
+                    });
+                },
+
+                (error) => {
+                    console.log("error cmnr");
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                })
     }
 
     componentDidMount() {
-        var id =  this.props.match.params.number;
-        var url = "http://localhost:3001/api/BanHang/producer/"+id;
-        console.log(url);
+        var url = "http://localhost:3001/api/BanHang/NewProducts";
         //gửi json nên để header 'Content-Type': 'application/json'
         fetch(url,{
-            method: "GET",
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'},
         }).then(res => res.json())
@@ -40,46 +65,13 @@ class ProductByIDProducer extends React.Component {
                         error
                     });
                 })
-
+        console.log(this.state.list);
     }
- /*   shouldComponentUpdate(nextProps, nextState){
-        return this.props !== nextProps;
-    }*/
-
-    componentDidUpdate() {
-
-
-          var id =  this.props.match.params.number;
-        var url = "http://localhost:3001/api/BanHang/producer/"+id;
-        console.log(url);
-        //gửi json nên để header 'Content-Type': 'application/json'
-        fetch(url,{
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'},
-        }).then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        list: result
-                    });
-                },
-
-                (error) => {
-                    console.log("error cmnr");
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                })
-
-    }
-
 
 
     render() {
-        const {error, isLoaded, list,listID} = this.state;
+        const {error, isLoaded, list} = this.state;
+        console.log(this.state.list);
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -90,6 +82,7 @@ class ProductByIDProducer extends React.Component {
             return (
                 <div>
                     <div className="paddingtop text-center  bg-light">
+                        <h3 className="fontcolor">10 sản phẩm mới nhất !</h3>
                         <div className="album py-5 bg-light bg-black">
                             <div className="row">
                                 {list.map(item=>(
@@ -103,7 +96,7 @@ class ProductByIDProducer extends React.Component {
                                                 <p>
                                                     <Link to={"/home/ProductDetail/"+item.ProID} className="btn btn-primary fontwhite" role="button"><span className="fontwhite"> Chi tiết</span></Link>
 
-                                                    <Link to ={"/home/ProductDetail/"+item.ProID} className="btn btn-danger text-center" role="button" name ="btnDatMua">
+                                                    <Link to={'/home/ProductDetail/'+item.ProID} className="btn btn-danger text-center" role="button" name ="btnDatMua">
 
                                                         <span className="glyphicon glyphicon-shopping-cart fontwhite"></span>
                                                         <span className="fontwhite">Đặt mua</span>
@@ -133,6 +126,6 @@ class ProductByIDProducer extends React.Component {
 }
 
 
-export default  ProductByIDProducer
+export default ProductViewest
 
 

@@ -13,6 +13,9 @@ import AllProduct from "./AllProduct";
 import Search from "./Search";
 import Cart from "./Cart";
 import Purchase from "./PurchaseHistory";
+import BestSeller from "./BestSeller"
+import NewProducts from "./NewProducts"
+import ProductViewest from "./ProductViewest"
 
 
 class Main extends React.Component {
@@ -38,6 +41,9 @@ class Main extends React.Component {
                     <Route exact path='/home/Search/:QueryStr' component={Search}/>
                     <Route exact path='/home/Cart' component={Cart}/>
                     <Route exact path='/home/Purchase' component={Purchase}/>
+                    <Route exact path='/home/NewProducts' component={NewProducts}/>
+                    <Route exact path='/home/ProductViewest' component={ProductViewest}/>
+                    <Route exact path='/home/BestSeller' component={BestSeller}/>
 
                     <Route exact path = "/" component ={ListProductClient}/>
                 </Switch>

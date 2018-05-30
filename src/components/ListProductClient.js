@@ -20,13 +20,6 @@ class ListProductClient extends React.Component {
             img_link : "",
         }
         this.reload = this.reload.bind(this);
-        this.handlerChangeProName = this.handlerChangeProName.bind(this);
-        this.handlerChangeImg = this.handlerChangeImg.bind(this);
-        this.handlerChangeNSX = this.handlerChangeNSX.bind(this);
-        this.handlerChangeQuantity = this.handlerChangeQuantity.bind(this);
-        this.handlerChangePrice = this.handlerChangePrice.bind(this);
-        this.handlerChangeFullDes=this.handlerChangeFullDes.bind(this);
-        this.handlerChangeTinyDes = this.handlerChangeTinyDes.bind(this);
     }
 
     handleclick()
@@ -111,49 +104,6 @@ class ListProductClient extends React.Component {
     }
 
 
-
-
-    handlerChangeProName(event) {
-        this.setState({
-            ProName : event.target.value,
-
-        });
-    }
-
-    handlerChangeQuantity(event) {
-        this.setState({
-            Quantity : event.target.value,
-        });
-    }
-    handlerChangePrice(event) {
-        this.setState({
-            Price : event.target.value,
-        });
-    }
-
-    handlerChangeNSX(event) {
-        this.setState({
-            NSX : event.target.value,
-        });
-    }
-
-    handlerChangeImg(event) {
-        this.setState({
-            img_link : event.target.value,
-        });
-    }
-
-    handlerChangeFullDes(event) {
-        this.setState({
-            FullDes : event.target.value,
-        });
-    }
-    handlerChangeTinyDes(event) {
-        this.setState({
-            TinyDes : event.target.value,
-        });
-    }
-
     render() {
         const {error, isLoaded, list,listID} = this.state;
 
@@ -167,6 +117,7 @@ class ListProductClient extends React.Component {
             return (
                 <div>
                     <div className="paddingtop text-center  bg-light">
+                        <h3 className="fontcolor">Tất cả sản phẩm hiện có</h3>
                         <div className="album py-5 bg-light bg-black">
                             <div className="row">
                                 {list.map(item=>(
