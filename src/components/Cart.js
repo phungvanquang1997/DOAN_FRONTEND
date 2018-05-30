@@ -10,10 +10,52 @@ class Cart extends React.Component
             Username : "",
             isAdmin : false,
             CartItem : [],
-            isSuccess : "hidden"
+            isSuccess : "hidden",
+            Quantity : ""
         }
 
+    }
 
+    EditItem(item)
+    {
+        this.setState({isEdit:true});
+
+
+    }
+    RemoveItem(item)
+    {
+
+        const CartItem = this.state.CartItem;
+        var listCart = [{}];
+        for(var i = 0 ; i  < CartItem.length ; i = i+4) {
+            var Cart = {ProID: CartItem[i],ProName : CartItem[i+1],Price : CartItem[i+2] , Quantity: CartItem[i+3]}
+            listCart.push(Cart);
+        }
+        listCart = listCart.filter(function(e) { return e !== listCart[0]}) // xóa item null
+        var index = 0;
+        for(var j = 0 ; j < listCart.length ;j++)
+        {
+            if(JSON.stringify(item)===JSON.stringify(listCart[j]))
+            {
+                index = j;
+            }
+        }
+        listCart = listCart.filter(function (e) {
+            return e !== listCart[index];
+        })
+
+        var listTemp = [];
+        for(var k = 0 ; k < listCart.length ;k++)
+        {
+           listTemp.push(listCart[k].ProID.toString());
+            listTemp.push(listCart[k].ProName.toString());
+            listTemp.push(listCart[k].Price.toString());
+            listTemp.push(listCart[k].Quantity.toString());
+        }
+      /*  this.setState({CartItem : listTemp});*/
+     window.localStorage.setItem("SaveProduct",  JSON.stringify(listTemp));
+        console.log(window.localStorage.getItem("SaveProduct"));
+        this.setState({CartItem : JSON.parse(window.localStorage.getItem("SaveProduct"))});
     }
 
     Pay()
@@ -48,6 +90,7 @@ class Cart extends React.Component
 
     componentDidMount()
     {
+        console.log(window.localStorage.getItem("SaveProduct"));
         if(window.localStorage.getItem("SaveProduct"))
         {
             this.setState({CartItem : JSON.parse(window.localStorage.getItem("SaveProduct"))});
@@ -118,12 +161,12 @@ class Cart extends React.Component
                             <td>{item.Price}</td>
                             <td>{item.Quantity}</td>
                             <td className="text-right">
-                                <a className="btn btn-default btn-xs" role="button">
+                                <button  onClick={this.EditItem.bind(this)} className="btn btn-default btn-xs" role="button">
                                     <span className="glyphicon glyphicon-pencil"></span>
-                                </a>
-                                <a className="btn btn-danger btn-xs" role="button">
+                                </button>
+                                <button onClick={this.RemoveItem.bind(this,item)} className="btn btn-danger btn-xs" role="button">
                                     <span className="glyphicon glyphicon-remove"></span>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         ))}
@@ -146,7 +189,6 @@ class Cart extends React.Component
                             <strong>Thanh toán thành công!</strong>.
                         </div>
                     </div>
-                    <span>Không có giỏ hàng nào cả </span>
                 </div>
 
 

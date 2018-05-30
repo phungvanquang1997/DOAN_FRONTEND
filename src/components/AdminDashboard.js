@@ -32,7 +32,6 @@ class AdminDashboard extends React.Component
     render(){
         var token = window.localStorage.getItem('access_token');
         var permission = window.localStorage.getItem('permission');
-        console.log("quyền : " + permission);
 
         if(!token)
         {

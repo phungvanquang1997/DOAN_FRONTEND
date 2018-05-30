@@ -163,6 +163,7 @@ class ProductDetail extends React.Component {
             window.localStorage.setItem("SaveProduct",JSON.stringify(ListSaveProduct));
             console.log(JSON.parse(window.localStorage.getItem("SaveProduct")).length);
             this.setState({ErrBuy2 : "visible"});
+            this.Quantity.value = null;
             /*var k = JSON.parse(window.localStorage.getItem("SaveProduct"));*!/*/
 
            /* var duplicateList = {

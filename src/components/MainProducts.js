@@ -12,6 +12,7 @@ import ChangePassword from "./ChangePassword"
 import AllProduct from "./AllProduct";
 import Search from "./Search";
 import Cart from "./Cart";
+import Purchase from "./PurchaseHistory";
 
 
 class Main extends React.Component {
@@ -36,6 +37,7 @@ class Main extends React.Component {
                     <Route exact path='/home/ProductDetail/:number' component={ProductDetail}/>
                     <Route exact path='/home/Search/:QueryStr' component={Search}/>
                     <Route exact path='/home/Cart' component={Cart}/>
+                    <Route exact path='/home/Purchase' component={Purchase}/>
 
                     <Route exact path = "/" component ={ListProductClient}/>
                 </Switch>

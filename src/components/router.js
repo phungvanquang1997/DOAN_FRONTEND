@@ -38,6 +38,7 @@ const  RouteConfig =() =>
             <Route exact path='/home/ChangePassword' component={AllProduct}/>
             <Route exact path='/home/Search/:QueryStr' component={AllProduct}/>
             <Route exact path='/home/Cart' component={AllProduct}/>
+            <Route exact path='/home/Purchase' component={AllProduct}/>
 
 
             <Route exact path='/admin/listUser' component={AdminDashboard}/>
