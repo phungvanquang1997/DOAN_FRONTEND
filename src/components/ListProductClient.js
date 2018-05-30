@@ -116,8 +116,54 @@ class ListProductClient extends React.Component {
         else
             return (
                 <div>
+                    <div id="myCarousel" className="carousel slide text-center" data-ride="carousel">
+                        <ol className="carousel-indicators ">
+                            <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <li data-target="#myCarousel" data-slide-to="3"></li>
+                        </ol>
+
+                        <div className="carousel-inner" role="listbox">
+
+                            <div className="item active">
+                                <img src="http://www.warehouse-asia.com/wp-content/uploads/2013/12/Shop-panorama-HQ-resized-1000x3001-1000x300.jpg"  width="400" height="350"/>
+                          {/*      <div className="carousel-caption">
+                                    <h3>Chania</h3>
+                                </div>*/}
+                            </div>
+                                <React.Fragment>
+                                    <div className="item">
+                                        <img src="http://www.warehouse-asia.com/wp-content/uploads/2013/12/banner_SZ-1000x300.jpg" alt="Acb"/>
+                                    </div>
+
+                                    <div className="item " >
+                                        <img  src="http://www.warehouse-asia.com/wp-content/uploads/2013/12/Untitled-2-01-1000x300.png" />
+                                    </div>
+                                    <div className="item">
+                                        <img  src="http://www.warehouse-asia.com/wp-content/uploads/2013/12/Untitled-21-1000x300.jpg"/>
+                                    </div>
+                                    <div className="item">
+                                        <img  src="http://www.warehouse-asia.com/wp-content/uploads/2013/12/Evian-Badoit-bannerresize-1000x300.jpg"/>
+                                    </div>
+                                </React.Fragment>
+
+                        </div>
+
+                        <a className="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                            <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span className="sr-only">Previous</span>
+                        </a>
+                        <a className="right carousel-control" href="#myCarousel" role="button"
+                           data-slide="next">
+                            <span className="glyphicon glyphicon-chevron-right " aria-hidden="true"></span>
+                            <span className="sr-only">Next</span>
+                        </a>
+                    </div>
+
                     <div className="paddingtop text-center  bg-light">
                         <h3 className="fontcolor">Tất cả sản phẩm hiện có</h3>
+
                         <div className="album py-5 bg-light bg-black">
                             <div className="row">
                                 {list.map(item=>(

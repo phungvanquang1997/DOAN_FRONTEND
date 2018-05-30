@@ -63,13 +63,13 @@ class allProduct extends React.Component
                 <div className="bg-light">
                     <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
                         <Link to ="/" className="navbar-brand col-sm-3 col-md-2 mr-0">Quang's shop</Link>
-                        <input ref={input=>this.QueryStr = input} className="form-control form-control-dark w80" type="text" placeholder="Search"
+                        <input ref={input=>this.QueryStr = input} className="form-control form-control-dark w80" type="text" placeholder="Nhập tên sản phẩm , giá sản phẩm , nhà sản xuất,..."
                                aria-label="Search"/>
 
                           {/*  <Link to={'/home/Search/'+this.state.QueryStr} className="nav-link" >*/}
                                 <div className="navbar-nav px-2">
                                     <button className="btn btn-primary" onClick={this.Search}>
-
+                                        <i className="fa fa-search"></i>
                                        Tìm kiếm
 
                                     </button>
@@ -80,7 +80,7 @@ class allProduct extends React.Component
                             <React.Fragment>
                                 <div className="navbar-nav px-2">
                                     <Link to={'/home/Cart'} className="btn btn-primary">
-                                       Giỏ hàng của bạn({cartItem})
+                                        <i className="fa fa-shopping-basket"></i> Giỏ hàng của bạn({cartItem})
                                     </Link>
                                 </div>
 
@@ -157,7 +157,20 @@ class allProduct extends React.Component
                                             <Link to='/home/ProductViewest'  className="btn btn-sm btn-outline-secondary"role="button">
                                                 <b className="fa fa-bars fontsize20"> 10 sản phẩm được xem nhiều nhất</b> < span className="caret"></span>
                                             </Link>
+                                            <div className="pull-right">
+                                                <div className="pull-left ">
+                                                    <i className="glyphicon glyphicon-phone-alt fontsize40">  </i>
+                                                </div>
+                                                <span></span>
+                                                <div className="pull-right fontsize15 pdleft15">
+                                                    <span className="bold "> HỖ TRỢ VIÊN</span>
+                                                    <br/>
+                                                    <span> 01222764497 </span>
+                                                </div>
+
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
 

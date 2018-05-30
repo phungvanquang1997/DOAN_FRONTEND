@@ -135,6 +135,12 @@ class ProductDetail extends React.Component {
         {
             document.location.href="/home/register";
         }
+        console.log(this.Quantity.value);
+        if(!this.Quantity.value)
+        {
+            this.setState({ErrBuy : "visible"});
+            return;
+        }
         if(isNaN(this.Quantity.value))
         {
             this.setState({ErrBuy : "visible"});

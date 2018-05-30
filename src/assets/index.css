@@ -7,6 +7,26 @@ body {
     height: 40px;
 }
 
+.fontsize40
+{
+    font-size: 30px;
+    color: red;
+}
+
+.pdleft15
+{
+    padding-left: 15px;
+}
+
+.fontsize15
+{
+    font-size:12px;
+}
+
+.w1000
+{
+    width: 1000px;
+}
 /*a:hover {
     color: red!important;
     font-weight: bold;
