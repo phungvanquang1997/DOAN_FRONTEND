@@ -16,10 +16,16 @@ class ListOrders extends React.Component {
             listID: [],
             IDnsx : 0,
             TenNSX : "",
+            IDconfirm : "",
         }
         this.reload = this.reload.bind(this);
         this.handlerChangeTenNSX = this.handlerChangeTenNSX.bind(this);
         this.handlerChangeID = this.handlerChangeID.bind(this);
+    }
+
+    handlerGoToDeleteModal(IDnsx)
+    {
+        this.setState({IDconfirm:IDnsx});
     }
 
     handlerGetData(i)
@@ -103,7 +109,7 @@ class ListOrders extends React.Component {
     componentDidMount()
     {
         var token = window.localStorage.getItem('access_token');
-        var url = "http://localhost:3001/nsx/nsx";
+        var url = "http://localhost:3001/nsx/findAll";
         fetch(url,{
             "async": true,
             "method": "GET",
@@ -131,7 +137,7 @@ class ListOrders extends React.Component {
 
         var token = window.localStorage.getItem('access_token');
         console.log(token);
-        var url = "http://localhost:3001/nsx/nsx/";
+        var url = "http://localhost:3001/nsx/findAll/";
         fetch(url,{
             "async": true,
             "method": "GET",
@@ -189,7 +195,25 @@ class ListOrders extends React.Component {
                             </button>
                         </div>
 
-
+                        <div className="modal position paddingtop20" id="DeleteModal">
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <div className="fontcolor text-center ">Xác nhận thao tác</div>
+                                    </div>
+                                    <p className="text-center">Bạn có muốn xóa mã nhà sản xuất <span className="color-red">{this.state.IDconfirm}</span> không ?</p>
+                                    <div className="text-center">
+                                        <button type="button"  onClick={this.handlerDelete.bind(this,this.state.IDconfirm)} className="btn btn-danger"
+                                                data-dismiss="modal">Delete
+                                        </button>
+                                        <span className=" pdleft50"></span>
+                                        <button type="button" className="btn btn-primary"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Modal tạo sản phẩm */}
                         <div className="modal position" id="myModal">
@@ -276,7 +300,7 @@ class ListOrders extends React.Component {
                     <div className="table-responsive">
                         <table className="table table-striped table-sm">
                             <thead>
-                            <tr>
+                            <tr className="bold">
                                 <th>Mã nhà sản xuất</th>
                                 <th>Tên nhà sản xuất</th>
                                 <th>
@@ -292,6 +316,7 @@ class ListOrders extends React.Component {
                                     <td>
                                         {/*
 
+
                                              <Link to ="/roster" className="fas fa-times red-s20 pdleft" onClick={this.handlerDelete.bind(this,item.OrderID)}>
                                             Remove
                                              </Link>*/}
@@ -299,7 +324,7 @@ class ListOrders extends React.Component {
                                             <div className="btn-group  text-center">
                                                 <button data-toggle="modal" onClick={this.handlerGetData.bind(this,item.IDnsx)} data-target="#EditModal" className="btn btn-info btn-s"><span className="glyphicon glyphicon-cog"> Update</span></button>
 
-                                                <button  type="button"   onClick={this.handlerDelete.bind(this,item.IDnsx)}  className="btn btn-danger"
+                                                <button  type="button" data-toggle="modal" data-target="#DeleteModal"  onClick={this. handlerGoToDeleteModal.bind(this,item.IDnsx)}  className="btn btn-danger"
                                                 >
                                                     <span className="glyphicon glyphicon-ban-circle"> Delete</span>
                                                 </button>

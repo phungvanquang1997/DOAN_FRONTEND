@@ -23,6 +23,17 @@ body {
     font-size:12px;
 }
 
+.Purchase
+{
+    color : #ff3651 !important;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.paddingtop20
+{
+    padding-top: 20%;
+}
+
 .w1000
 {
     width: 1000px;
@@ -225,9 +236,6 @@ h1.page-header {
 {border-style: inset;}
 
 
-tr:hover{
-    background-color: yellow;
-}
 .bgHeader
 {
     background: #EAEAEA;
@@ -250,7 +258,10 @@ tr:hover{
 {
     visibility: visible;
 }
-
+.pdtop20
+{
+    padding-top: 20px;
+}
 .h20w120
 {
     height: 35px;

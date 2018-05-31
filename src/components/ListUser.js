@@ -12,8 +12,14 @@ class ListUser extends React.Component {
             error: false,
             isLoaded: false,
             list: [],
+            f_ID : "",
         }
         this.reload = this.reload.bind(this);
+    }
+
+    handlerGoToDeleteModal(f_ID)
+    {
+        this.setState({f_ID : f_ID});
     }
 
     componentDidMount()
@@ -124,12 +130,31 @@ class ListUser extends React.Component {
                     <div className=" fontcolor text-center">
                         Danh sách khách hàng
                     </div>
+                    <div className="modal position paddingtop20" id="DeleteModal">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <div className="fontcolor text-center ">Xác nhận thao tác</div>
+                                </div>
+                                <p className="text-center">Bạn có muốn xóa UID : <span className="color-red">{this.state.f_ID}</span> không ?</p>
+                                <div className="text-center">
+                                    <button type="button" onClick={this.handlerDelete.bind(this,this.state.f_ID)} className="btn btn-danger"
+                                            data-dismiss="modal">Delete
+                                    </button>
+                                    <span className=" pdleft50"></span>
+                                    <button type="button" className="btn btn-primary"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="hover-yellow">
-                        <table className="table table-sm">
+                        <table className="table table-sm table-hover">
                             <thead>
-                            <tr>
+                            <tr className="bold">
                                 <th>UID</th>
-                                <th>User name </th>
+                                <th>Username </th>
                                 <th>Họ tên</th>
                                 <th>Quyền hạn</th>
                                 <th>
@@ -153,9 +178,10 @@ class ListUser extends React.Component {
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="btn-group pdleft text-center">
                                                 <Link to ={"/admin/listUser/"+item.f_ID} className="fas fa-edit btn btn-primary">Detail</Link>
-                                                <button type="button"  onClick={this.handlerDelete.bind(this,item.f_ID)} className="btn btn-danger"
+                                                <button type="button" data-toggle="modal" data-target="#DeleteModal" onClick={this.handlerGoToDeleteModal.bind(this,item.f_ID)} className="btn btn-danger"
                                                 >Delete
                                                 </button>
+
                                             </div>
                                         </div>
                                     </td>

@@ -11,9 +11,14 @@ class Cart extends React.Component
             isAdmin : false,
             CartItem : [],
             isSuccess : "hidden",
-            Quantity : ""
+            Quantity : "",
+            IsPay : false,
         }
 
+    }
+    handlerGoToDeleteModal(ProID)
+    {
+        this.setState({IsPay:true});
     }
 
     EditItem(item)
@@ -113,11 +118,24 @@ class Cart extends React.Component
         if(this.state.CartItem==null || this.state.CartItem.length==0)
         {
             return(
+                <React.Fragment>
                 <div className="col-md-12">
                     <div className="text-center" role="alert">
                         Giỏ hàng của bạn đang trống !!!
                     </div>
                 </div>
+                    {
+                        this.state.isSuccess === "visible" ?
+                            <div className={this.state.isSuccess} id="pdtop20">
+                                <div className="alert alert-success" id="ThongBao" role="alert">
+                                    <strong>Thanh toán thành công!</strong>.
+                                </div>
+                            </div>
+
+                            :
+                            null
+                    }
+                </React.Fragment>
             )
         }
         else {
@@ -173,10 +191,31 @@ class Cart extends React.Component
                         </React.Fragment>
                         </tbody>
                     </table>
+
+                    <div className="modal position paddingtop20" id="DeleteModal">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <div className="fontcolor text-center ">Xác nhận thanh toán đơn hàng</div>
+                                </div>
+                                <p className="text-center">Bạn có muốn thánh toán đơn hàng này không ?? </p>
+                                <div className="text-center">
+                                    <button type="button" onClick={this.Pay.bind(this)} className="btn btn-success"
+                                            data-dismiss="modal">Yes
+                                    </button>
+                                    <span className=" pdleft50"></span>
+                                    <button type="button" className="btn btn-primary"
+                                            data-dismiss="modal">No
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="col-md-12">
                             <div className="text-right">
 
-                                <button onClick={this.Pay.bind(this)} className="btn btn-success" role="button" name="btnDatMua">
+                                <button data-toggle="modal" data-target="#DeleteModal" className="btn btn-success" role="button" name="btnDatMua">
                                     <span className="glyphicon glyphicon-shopping-cart"></span>
                                     Thanh Toán
                                 </button>
@@ -184,11 +223,6 @@ class Cart extends React.Component
                             </div>
                     </div>
 
-                    <div className={this.state.isSuccess} id="pdtop20">
-                        <div className="alert alert-success" id="ThongBao" role="alert">
-                            <strong>Thanh toán thành công!</strong>.
-                        </div>
-                    </div>
                 </div>
 
 

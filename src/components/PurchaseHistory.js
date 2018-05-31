@@ -87,6 +87,7 @@ class Purchase extends React.Component
         }
         return(
             <div>
+                <div className="text-center Purchase alert-link bold fontsize20 pdbottom">Lịch sử mua hàng của bạn </div>
             <div className="col-md-7">
                 <div className="alert alert-success text-center ">
                     <span className="alert-link text-center">Bạn có {this.state.totalOrder} hóa đơn </span>
@@ -96,9 +97,9 @@ class Purchase extends React.Component
 
                     <tr>
                         <th scope="col">Hóa đơn</th>
-                        <th scope="col">Ngày lập</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col">Chi tiết</th>
+                        <th scope="col"className="text-center">Ngày lập</th>
+                        <th scope="col" className="text-center">Trạng thái</th>
+                        <th scope="col"className="text-center">Chi tiết</th>
 
                     </tr>
                     </thead>
@@ -106,7 +107,7 @@ class Purchase extends React.Component
                     {list.map(item=>(
                         <tr>
                             <th scope="row"> {item.OrderID}</th>
-                            <td>{item.OrderDate}</td>
+                            <td className="text-center">{item.OrderDate}</td>
                             <td> {item.Status}
                             </td>
                             <td className="text-right">

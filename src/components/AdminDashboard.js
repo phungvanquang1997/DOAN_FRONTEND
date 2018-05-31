@@ -57,8 +57,7 @@ class AdminDashboard extends React.Component
             <div className="top0">
         <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
             <Link to='/' className="navbar-brand col-sm-3 col-md-2 mr-0">Quang's shop</Link>
-            <input className="form-control form-control-dark w-100" type="text" placeholder="Search"
-                   aria-label="Search"/>
+            <h3 className="w-100 text-center fontwhite bold pdtop20">Trang quản lý</h3>
                 <ul className="navbar-nav px-3">
                     <li className="nav-item text-nowrap">
                         <a className="nav-link btn" onClick={this.SignOut.bind(this)}>Sign out</a>

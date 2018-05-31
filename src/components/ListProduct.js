@@ -20,6 +20,7 @@ class ListProduct extends React.Component {
             NSX : "",
             img_link : "",
             OriginID : "",
+            ProIDconfirm: "",
 
         }
         this.reload = this.reload.bind(this);
@@ -34,6 +35,10 @@ class ListProduct extends React.Component {
         this.handlerChangeOrigin = this.handlerChangeOrigin.bind(this);
     }
 
+    handlerGoToDeleteModal(ProID)
+    {
+        this.setState({ProIDconfirm:ProID});
+    }
     GetListProducer()
     {
 
@@ -61,6 +66,7 @@ class ListProduct extends React.Component {
     handleclick()
     {
 
+        var maxID = [];
         var token = window.localStorage.getItem('access_token');
         var d = new Date();
         var Now = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay();
@@ -83,7 +89,7 @@ class ListProduct extends React.Component {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
             },
-        }).catch(error => this.reload())
+            }).then(rs=>rs.json()).then((rs)=>{maxID : rs},console.log(maxID)).catch(()=>this.reload())
             .then(response => this.reload());
         // vẫn bị lỗi khi tạo JSON
         this.ProName.value = this.Tinydes.value = this.Fulldes.value = this.Price.value=  this.Quantity.value = this.img_link.value =null ;
@@ -96,7 +102,7 @@ class ListProduct extends React.Component {
     {
         var url = "http://localhost:3001/api/BanHang/"
         var token = window.localStorage.getItem('access_token');
-        console.log(token);
+
 
         //gửi json nên để header 'Content-Type': 'application/json'
         fetch(url,{
@@ -141,7 +147,6 @@ class ListProduct extends React.Component {
                         isLoaded: true,
                         listProducer : result
                     });
-                    console.log(result);
                 });
         //-------------------------------------------------
 
@@ -160,14 +165,12 @@ class ListProduct extends React.Component {
                         isLoaded: true,
                         listOrigin : result
                     });
-                    console.log(result);
                 });
 
         //-------------------------------------------------
 
 
         var url = "http://localhost:3001/api/BanHang/"
-        console.log(token);
 
         //gửi json nên để header 'Content-Type': 'application/json'
         fetch(url,{
@@ -265,7 +268,6 @@ class ListProduct extends React.Component {
 
         var url = "http://localhost:3001/api/BanHang/"+i;
         var token = window.localStorage.getItem('access_token');
-        console.log(token);
 
         //gửi json nên để header 'Content-Type': 'application/json'
         fetch(url,{
@@ -326,7 +328,6 @@ class ListProduct extends React.Component {
 
     render() {
         const {error, isLoaded, list,listID,listProducer,listOrigin} = this.state;
-        console.log(listOrigin);
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -546,6 +547,27 @@ class ListProduct extends React.Component {
                         </div>
                     </div>
 
+                    <div className="modal position paddingtop20" id="DeleteModal">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <div className="fontcolor text-center ">Xác nhận thao tác</div>
+                                </div>
+                                <p className="text-center">Bạn có muốn xóa mã sản phẩm <span className="color-red">{this.state.ProIDconfirm}</span> không ?</p>
+                                    <div className="text-center">
+                                        <button type="button" onClick={this.handlerDelete.bind(this,this.state.ProIDconfirm)} className="btn btn-danger"
+                                                data-dismiss="modal">Delete
+                                        </button>
+                                        <span className=" pdleft50"></span>
+                                        <button type="button" className="btn btn-primary"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+
 
 
                 <div className="paddingtop text-center fontcolor bg-black">
@@ -561,7 +583,7 @@ class ListProduct extends React.Component {
                                                 {item.ProName}</p>
                                             <div className="d-flex justify-content-between align-items-center">
                                                 <div className="btn-group pdleft text-center">
-                                                    <button type="button"  onClick={this.handlerDelete.bind(this,item.ProID)} className="btn btn-danger"
+                                                    <button type="button" data-toggle="modal" data-target="#DeleteModal" onClick={this.handlerGoToDeleteModal.bind(this,item.ProID)} className="btn btn-danger"
                                                     >Delete
                                                     </button>
                                                     <button type="button" className="btn btn-primary" data-toggle="modal"
@@ -575,7 +597,12 @@ class ListProduct extends React.Component {
                                 ))}
                             </div>
                         </div>
-                    </div>
+                </div>
+
+
+
+
+
                     <a href="#" className="go-top">Back to top</a>
                 </div>
             )

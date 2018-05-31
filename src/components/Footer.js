@@ -82,6 +82,7 @@ class Footer extends Component {
                         </div>
                         <div className="clear"></div>
                         <div className="copyright">&copy;  2018 All Rights Reserved</div>
+                        <div className="copyright text-center">&copy;  Developed by Phùng Văn Quang</div>
                     </div>
                 </div>
             </footer>

@@ -94,7 +94,7 @@ class allProduct extends React.Component
                                 </button>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/home/profile" >Thông tin cá nhân</Link></li>
-                                    <li><a >Lịch sử mua hàng</a></li>
+                                    <li><Link to='/home/Purchase' >Lịch sử mua hàng</Link></li>
                                     <li><Link to="/home/ChangePassword">Đổi mật khẩu</Link></li>
 
                                     {this.state.isAdmin === true ?

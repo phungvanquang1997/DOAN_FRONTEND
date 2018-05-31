@@ -64,7 +64,9 @@ class ProductCatologies extends React.Component
                             </div>
                         {list.map(item=>
                                 <div className="list-group">
-                                    <Link to={"/home/producer/"+item.IDnsx} className="list-group-item">{item.TenNSX}</Link>
+                                    <Link to={"/home/producer/"+item.IDnsx} className="list-group-item">{item.TenNSX}
+                                        <span className="badge badge-light">{item.num}</span>
+                                    </Link>
                           {/*          <Link to='/admin' className="list-group-item">{item.TenNSX}</Link>*/}
 
                                 </div>

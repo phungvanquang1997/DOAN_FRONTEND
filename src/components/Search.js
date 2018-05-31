@@ -122,12 +122,12 @@ class Search extends React.Component {
                                                 <p>
                                                     <Link to={"/home/ProductDetail/"+item.ProID} className="btn btn-primary fontwhite" role="button"><span className="fontwhite"> Chi tiết</span></Link>
 
-                                                    <a className="btn btn-danger text-center" role="button" name ="btnDatMua">
+                                                    <Link to={"/home/ProductDetail/"+item.ProID} className="btn btn-danger text-center" role="button" name ="btnDatMua">
 
                                                         <span className="glyphicon glyphicon-shopping-cart fontwhite"></span>
                                                         <span className="fontwhite">Đặt mua</span>
 
-                                                    </a>
+                                                    </Link>
 
                                                     <a className="btn btn-default" role = "button">
                                                         <span className="glyphicon glyphicon-eye-open" ></span>

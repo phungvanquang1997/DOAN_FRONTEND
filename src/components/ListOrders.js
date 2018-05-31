@@ -13,10 +13,14 @@ class ListOrders extends React.Component {
             error: false,
             isLoaded: false,
             list: [],
+            OrderIDconfirm : "",
         }
             this.reload = this.reload.bind(this);
     }
-
+    handlerGoToDeleteModal(OrderID)
+    {
+        this.setState({OrderIDconfirm : OrderID});
+    }
     componentDidMount()
     {
         this.sendToKen();
@@ -135,10 +139,31 @@ class ListOrders extends React.Component {
                     <div className=" fontcolor text-center">
                         Danh sách đơn hàng
                     </div>
+
+                    <div className="modal position paddingtop20" id="DeleteModal">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <div className="fontcolor text-center ">Xác nhận thao tác</div>
+                                </div>
+                                <p className="text-center">Bạn có muốn xóa mã hóa đơn <span className="color-red">{this.state.OrderIDconfirm}</span> không ?</p>
+                                <div className="text-center">
+                                    <button type="button" onClick={this.handlerDelete.bind(this,this.state.OrderIDconfirm)} className="btn btn-danger"
+                                            data-dismiss="modal">Delete
+                                    </button>
+                                    <span className=" pdleft50"></span>
+                                    <button type="button" className="btn btn-primary"
+                                            data-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="table-responsive">
                         <table className="table table-striped table-sm">
                             <thead>
-                            <tr>
+                            <tr className="bold">
                                 <th>Mã hóa đơn</th>
                                 <th>Tổng tiền</th>
                                 <th>Trạng thái</th>
@@ -166,7 +191,7 @@ class ListOrders extends React.Component {
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="btn-group pdleft text-center">
                                                 <Link to ={"/admin/order/"+item.OrderID} className="fas fa-edit btn btn-primary">Detail</Link>
-                                                <button type="button"  onClick={this.handlerDelete.bind(this,item.OrderID)} className="btn btn-danger"
+                                                <button type="button"  data-toggle="modal" data-target="#DeleteModal" onClick={this.handlerGoToDeleteModal.bind(this,item.OrderID)} className="btn btn-danger"
                                                 >Delete
                                                 </button>
                                             </div>
@@ -180,6 +205,9 @@ class ListOrders extends React.Component {
                             </tbody>
                         </table>
                     </div>
+
+
+
 
                     <a href="#" className="go-top">Back to top</a>
                 </div>
