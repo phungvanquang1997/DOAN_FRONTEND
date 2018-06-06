@@ -27,6 +27,10 @@ class allProduct extends React.Component
 
     Search()
     {
+        if(this.QueryStr.value==="" || this.QueryStr.value == null)
+        {
+            this.QueryStr.value = "null";
+        }
         document.location.href = "http://localhost:3000/home/Search/"+this.QueryStr.value;
     }
 

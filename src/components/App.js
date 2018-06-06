@@ -10,14 +10,19 @@ import Route from "./router";
 import Register from "./register"
 import Error from "./Error"
 
-
 class App extends Component {
+
 
     constructor() {
         super();
 
     }
-    
+
+    onChange(value) {
+        console.log("Captcha value:", value);
+    }
+
+
     render()
     {
 

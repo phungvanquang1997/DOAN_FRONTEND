@@ -1,5 +1,10 @@
 import React from 'react'
-
+const min = 1;
+const max = 100;
+const rand = parseInt(min + Math.random() * (max - min));
+const min1 = 1;
+const max1 = 100;
+const rand1 = parseInt(min1 + Math.random() * (max1 - min1));
 
 class register extends React.Component {
 
@@ -19,8 +24,12 @@ class register extends React.Component {
             ErrName1 : "hidden",
             ErrSDT1 : "hidden",
             ErrEmail1 : "hidden",
+            Errcaptcha : "hidden",
+            randomNumA : rand,
+            randomNumB : rand1,
 
         })
+
     }
 
 
@@ -106,6 +115,12 @@ class register extends React.Component {
             this.setState({ErrEmail:"visible"});
         }
 
+        if(this.Captcha.value != parseInt(this.state.randomNumA + this.state.randomNumB))
+        {
+            flag = false;
+            this.setState({Errcaptcha:"visible"});
+        }
+
 
         if(flag) {
             this.setState({
@@ -121,6 +136,7 @@ class register extends React.Component {
                 ErrName1 : "hidden",
                 ErrSDT1 : "hidden",
                 ErrEmail1 : "hidden",
+                Errcaptcha : "hidden"
             });
 
             fetch("http://localhost:3001/api/users/users", {
@@ -143,7 +159,7 @@ class register extends React.Component {
             this.setState({isHidden:'visible'});
         }
 
-        this.f_rePassword.value = this.f_SDT.value = this.f_Username.value =  this.f_Password.value = this.f_Name.value = this.f_Email.value = this.f_DiaChi.value = null;
+        this.Captcha.value = this.f_rePassword.value = this.f_SDT.value = this.f_Username.value =  this.f_Password.value = this.f_Name.value = this.f_Email.value = this.f_DiaChi.value = null;
 
     }
 
@@ -218,7 +234,7 @@ class register extends React.Component {
 
                         <div className="form-group">
                             <label htmlFor="txtPassword">Nhập lại password</label>
-                            <input type="password" className="form-control" ref={input=>this.f_rePassword = input} id="txtPassword" name="txtPassword"
+                            <input type="password" className="form-control" ref={input=>this.f_rePassword = input} name="txtPassword"
                                    placeholder="******"/>
                         </div>
                         <div className={this.state.ErrPassword} id="pdtop20">
@@ -239,7 +255,7 @@ class register extends React.Component {
 
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Số điện thoại</label>
-                            <input type="email" className="form-control" ref={input=>this.f_SDT = input}id="txtSDT" aria-describedby="emailHelp" name="Email"
+                            <input type="email" className="form-control" ref={input=>this.f_SDT = input} id="txtSDT" aria-describedby="emailHelp" name="Email"
                                    placeholder="Nhập số điện thoại của bạn"/>
                         </div>
                         <div className={this.state.ErrSDT} id="pdtop20">
@@ -275,7 +291,7 @@ class register extends React.Component {
 
                         <div className="form-group">
                             <label htmlFor="exampleInputEmail1">Email address</label>
-                            <input type="email" className="form-control" ref={input=>this.f_Email = input}id="txtEmail" aria-describedby="emailHelp" name="Email"
+                            <input type="email" className="form-control" ref={input=>this.f_Email = input} id="txtEmail" aria-describedby="emailHelp" name="Email"
                                    placeholder="Enter email"/>
                         </div>
                         <div className={this.state.ErrEmail} id="pdtop20">
@@ -289,6 +305,17 @@ class register extends React.Component {
                             </div>
                         </div>
 
+                        <div className="form-group">
+                            <label htmlFor="abc"><b className="bold">Captcha</b> : {this.state.randomNumA} + {this.state.randomNumB} = ? <span>Chỉ nhập số </span></label>
+                            <input type="abc" className="form-control" ref={input=>this.Captcha = input}  aria-describedby="abc" name="abc"
+                                   placeholder="VD : 1 + 2 = 3"/>
+                        </div>
+
+                        <div className={this.state.Errcaptcha} id="pdtop20">
+                            <div className="alert alert-danger" id="ThongBao" role="alert">
+                                <strong>Captcha bạn vừa nhập không đúng !!</strong>.
+                            </div>
+                        </div>
 
 
 

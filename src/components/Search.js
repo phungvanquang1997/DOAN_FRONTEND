@@ -17,7 +17,6 @@ class Search extends React.Component {
 
     componentDidMount() {
         var QueryStr =  this.props.match.params.QueryStr;
-
         var url = "http://localhost:3001/api/BanHang/Search/"+QueryStr;
         console.log(url);
         //gửi json nên để header 'Content-Type': 'application/json'
