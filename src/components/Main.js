@@ -1,10 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import ListProduct from './ListProduct'
-import User from './User'
-import ProductLayout from "./AllProduct";
+import ListProduct from './ListProduct';
 import OrderDetail from "./OrderDetail";
-import Admin from "./Admin";
 import UserDetail from "./UserDetail";
 import ListUser from "./ListUser";
 import ListOrders from "./ListOrders";

@@ -16,6 +16,7 @@ import Purchase from "./PurchaseHistory";
 import BestSeller from "./BestSeller"
 import NewProducts from "./NewProducts"
 import ProductViewest from "./ProductViewest"
+import ProductByNumPage from "./ProductByNumPage";
 
 
 class Main extends React.Component {
@@ -44,8 +45,9 @@ class Main extends React.Component {
                     <Route exact path='/home/NewProducts' component={NewProducts}/>
                     <Route exact path='/home/ProductViewest' component={ProductViewest}/>
                     <Route exact path='/home/BestSeller' component={BestSeller}/>
-
-                    <Route exact path = "/" component ={ListProductClient}/>
+                    <Route exact path="/home/page/:number" component={ProductByNumPage}/>
+                    <Route exact path='/home/' component={ProductByNumPage}/>
+                    <Route exact path = "/" component ={ProductByNumPage}/>
                 </Switch>
             </main>
         )

@@ -63,7 +63,7 @@ class ProductCatologies extends React.Component
                                 <h3 className="navbar-brand">Nhà sản xuất</h3>
                             </div>
                         {list.map(item=>
-                                <div className="list-group">
+                                <div className="list-group" key={item.IDnsx}>
                                     <Link to={"/home/producer/"+item.IDnsx} className="list-group-item">{item.TenNSX}
                                         <span className="badge badge-light">{item.num}</span>
                                     </Link>

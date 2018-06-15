@@ -213,6 +213,23 @@ h1.page-header {
     background: #EAEAEA;
 }
 
+.wh-pagination
+{
+    height: 100px;
+}
+
+.h40
+{
+    height: 40px;
+}
+
+.highlight
+{
+    font-weight: bold;
+    color: #ff5a5a !important;
+    font-size: 20px;
+}
+
 .
 
 .position
@@ -235,6 +252,10 @@ h1.page-header {
 .border-inset
 {border-style: inset;}
 
+.fontblue
+{
+    color: cornflowerblue !important;
+}
 
 .bgHeader
 {

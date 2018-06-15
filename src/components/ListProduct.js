@@ -516,7 +516,7 @@ class ListProduct extends React.Component {
                                                 {listProducer.map(itemnsx=>(
                                                     <React.Fragment>
                                                     {itemnsx.IDnsx === this.state.NSX  ?
-                                                        <option selected className="text-center" value={itemnsx.IDnsx}> {itemnsx.TenNSX}</option>
+                                                        <option selected className="text-center" key={itemnsx.IDnsx} value={itemnsx.IDnsx}> {itemnsx.TenNSX}</option>
                                                             :
                                                         null
                                                     }

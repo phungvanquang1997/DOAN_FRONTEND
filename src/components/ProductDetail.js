@@ -277,7 +277,7 @@ class ProductDetail extends React.Component {
         //             // Tạo thêm list img để tạo slide
             return(
 
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div className="panel-body">
                     {list.map(item=>(
                         <div>
