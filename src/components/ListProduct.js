@@ -21,7 +21,13 @@ class ListProduct extends React.Component {
             img_link : "",
             OriginID : "",
             ProIDconfirm: "",
-
+            ErrPrice : "hidden",
+            ErrPrice1 : "hidden",
+            ErrQuantity : "hidden",
+            ErrQuantity1 : "hidden",
+            ErrProName : "hidden",
+            ErrFullDes: "hidden",
+            ErrTinyDes: "hidden"
         }
         this.reload = this.reload.bind(this);
         this.handlerChangeProName = this.handlerChangeProName.bind(this);
@@ -62,39 +68,111 @@ class ListProduct extends React.Component {
                     console.log(result);
                 })
     }
+    checkQuantity()
+    {
+        if(this.Quantity.value === "" || this.Quantity.value == null)
+        {
+            this.setState({ErrQuantity1:"visible"});
+            return 0;
+        }
+        else if(isNaN(this.Quantity.value))
+        {
+            this.setState({ErrQuantity:"visible"});
+            return 0;
+        }
+        else {
+            this.setState({ErrQuantity: "hidden"});
+        }
+        return 1;
+    }
 
+    checkProName()
+    {
+        if(this.ProName.value === "" || this.ProName.value == null)
+        {
+            this.setState({ErrProName:"visible"});
+            return 0;
+        }
+        return 1;
+    }
+
+    checkTinyDes()
+    {
+        if(this.Tinydes.value === "" || this.Tinydes.value == null)
+        {
+            this.setState({ErrTinyDes:"visible"});
+            return 0;
+        }
+        return 1;
+    }
+    checkFullDes()
+    {
+        if(this.Fulldes.value === "" || this.Fulldes.value == null)
+        {
+            this.setState({ErrFullDes:"visible"});
+            return 0;
+        }
+        return 1;
+
+    }
+    checkPrice()
+    {
+        if(this.Price.value === "" || this.Price.value == null)
+        {
+            this.setState({ErrPrice1:"visible"});
+            return 0;
+        }
+        else if(isNaN(this.Price.value))
+        {
+            this.setState({ErrPrice:"visible"});
+            return 0;
+        }
+        else {
+            this.setState({ErrPrice: "hidden"});
+        }
+        return 1;
+    }
     handleclick()
     {
+        let flag = true;
+        if(!(this.checkPrice()&&this.checkProName()&&this.checkQuantity()&&this.checkFullDes()&&this.checkTinyDes()))
+        {
+            flag = false;
+        }
 
-        var maxID = [];
-        var token = window.localStorage.getItem('access_token');
-        var d = new Date();
-        var Now = d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay();
-        fetch("http://localhost:3001/api/BanHang/", {
-            method: 'POST',
-            body: JSON.stringify({
-                ProName : this.ProName.value,
-                TinyDes : this.Tinydes.value,
-                FullDes : this.Fulldes.value,
-                Price : this.Price.value,
-                Quantity : this.Quantity.value,
-                OriginID: this.OriginID.value,
-                View:'0',
-                SoLuongBan:'0',
-                NgayNhap: Now.toString(),
-                NSX : this.NSX.value,
-                img_link : this.img_link.value,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": "bearer "+token.toString(),
-            },
-            }).then(rs=>rs.json()).then((rs)=>{maxID : rs},console.log(maxID)).catch(()=>this.reload())
-            .then(response => this.reload());
-        // vẫn bị lỗi khi tạo JSON
-        this.ProName.value = this.Tinydes.value = this.Fulldes.value = this.Price.value=  this.Quantity.value = this.img_link.value =null ;
+        if(flag) {
+            this.setState({passed : true});
+            var maxID = [];
+            var token = window.localStorage.getItem('access_token');
+            var d = new Date();
+            var Now = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay();
+            fetch("http://localhost:3001/api/BanHang/", {
+                method: 'POST',
+                body: JSON.stringify({
+                    ProName: this.ProName.value,
+                    TinyDes: this.Tinydes.value,
+                    FullDes: this.Fulldes.value,
+                    Price: this.Price.value,
+                    Quantity: this.Quantity.value,
+                    OriginID: this.OriginID.value,
+                    View: '0',
+                    SoLuongBan: '0',
+                    NgayNhap: Now.toString(),
+                    NSX: this.NSX.value,
+                    img_link: this.img_link.value,
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": "bearer " + token.toString(),
+                },
+            }).then(rs => rs.json()).then((rs) => {
+                maxID : rs
+            }, console.log(maxID)).catch(() => this.reload())
+                .then(response => this.reload());
 
-
+            // vẫn bị lỗi khi tạo JSON
+            this.ProName.value = this.Tinydes.value = this.Fulldes.value = this.Price.value = this.Quantity.value = this.img_link.value = null;
+        }
     }
 
 
@@ -327,7 +405,7 @@ class ListProduct extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, list,listID,listProducer,listOrigin} = this.state;
+        const {error, isLoaded, list,listID,listProducer,listOrigin,passed} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -365,28 +443,74 @@ class ListProduct extends React.Component {
 
                                             <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1" className="bold">Tên sản phẩm</label>
-                                                <input ref={input => this.ProName = input}  type="text" className="form-control" name="txtProName" placeholder="Rượu vang"/>
+                                                <input onBlur={this.checkProName.bind(this)} ref={input => this.ProName = input}  type="text" className="form-control" name="txtProName" placeholder="Rượu vang"/>
+                                            </div>
+                                            <div className={this.state.ErrProName} id="pdtop20">
+                                                <div className="alert alert-danger" id="ThongBao" role="alert">
+                                                    <strong>Tên sản phẩm không được trống!</strong>.
+                                                </div>
                                             </div>
                                             <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1" className="bold">Mô tả nhỏ</label>
-                                                <input type="text" ref={input => this.Tinydes = input} className="form-control " name="txtTinyDes" placeholder="..."/>
+                                                <input onBlur={this.checkTinyDes.bind(this)} type="text" ref={input => this.Tinydes = input} className="form-control " name="txtTinyDes" placeholder="..."/>
+                                            </div>
+
+                                            <div className="pdtop30"></div>
+                                            <div className={this.state.ErrTinyDes} id="pdtop20">
+                                                <div className="alert alert-danger" id="ThongBao" role="alert">
+                                                    <strong>Mô tả nhỏ không được trống !</strong>.
+                                                </div>
                                             </div>
 
                                             <div className="form-group">
                                                 <label htmlFor="txtFullDes"  className="control-label bold">Chi tiết</label>
                                                 <div className="col-sm-12">
-                                          <textarea rows="4" id="txtFullDes" name="txtFullDes" ref={input => this.Fulldes = input}
+                                          <textarea onBlur={this.checkFullDes.bind(this)} rows="4" id="txtFullDes" name="txtFullDes" ref={input => this.Fulldes = input}
                                           className="form-control"/>
                                                 </div>
                                             </div>
+
+                                            <div className={this.state.ErrFullDes} id="pdtop20">
+                                                <div className="alert alert-danger" id="ThongBao" role="alert">
+                                                    <strong>Chi tiết không được trống</strong>.
+                                                </div>
+                                            </div>
+
+
                                             <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1" className="bold">Giá sản phẩm</label>
-                                                <input  ref={input => this.Price = input} type="text" className="form-control" name="txtPrice" placeholder="100000"/>
+                                                <input onBlur={this.checkPrice.bind(this)} ref={input => this.Price = input} type="text" className="form-control" name="txtPrice" placeholder="100000"/>
                                             </div>
+
+                                            <div className={this.state.ErrPrice1} id="pdtop20">
+                                                <div className="alert alert-danger" id="ThongBao" role="alert">
+                                                    <strong>Giá sản phẩm không được trống !</strong>.
+                                                </div>
+                                            </div>
+
+                                            <div className={this.state.ErrPrice} id="pdtop20">
+                                                <div className="alert alert-danger" id="ThongBao" role="alert">
+                                                    <strong>Vui lòng nhập số !</strong>.
+                                                </div>
+                                            </div>
+
                                             <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1"className="bold">Số lượng</label>
-                                                <input ref={input => this.Quantity = input} type="text" className="form-control" name="txtQuantity" placeholder="10"/>
+                                                <input onBlur={this.checkQuantity.bind(this)} ref={input => this.Quantity = input} type="text" className="form-control" name="txtQuantity" placeholder="10"/>
                                             </div>
+
+                                            <div className={this.state.ErrQuantity1} id="pdtop20">
+                                                <div className="alert alert-danger" id="ThongBao" role="alert">
+                                                    <strong>Số lượng không được trống !</strong>.
+                                                </div>
+                                            </div>
+
+                                            <div className={this.state.ErrQuantity} id="pdtop20">
+                                                <div className="alert alert-danger" id="ThongBao" role="alert">
+                                                    <strong>Vui lòng nhập số !</strong>.
+                                                </div>
+                                            </div>
+
                                             <div className="form-group">
                                                 <label htmlFor="exampleInputEmail1"className="bold">Quốc gia</label>
 
@@ -422,10 +546,10 @@ class ListProduct extends React.Component {
 
 
                                         <div className="modal-footer">
-                                            <button type="button" onClick={this.handleclick.bind(this)} className="btn btn-primary"
-                                                    data-dismiss="modal">Add
-                                            </button>
-
+                                                <button type="button" onClick={this.handleclick.bind(this)}
+                                                        className="btn btn-primary"
+                                                        data-dismiss="modal">Add
+                                                </button>
                                             <button type="button" className="btn btn-danger"
                                                     data-dismiss="modal">Close
                                             </button>

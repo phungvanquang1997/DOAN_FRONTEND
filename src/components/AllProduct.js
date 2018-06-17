@@ -66,7 +66,7 @@ class allProduct extends React.Component
 
                 <div className="bg-light">
                     <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-                        <Link to ="/" className="navbar-brand col-sm-3 col-md-2 mr-0">Quang's shop</Link>
+                        <Link to ="/home/page/1" className="navbar-brand col-sm-3 col-md-2 mr-0">Quang's shop</Link>
                         <input ref={input=>this.QueryStr = input} className="form-control form-control-dark w80" type="text" placeholder="Nhập tên sản phẩm , giá sản phẩm , nhà sản xuất,..."
                                aria-label="Search"/>
 

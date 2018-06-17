@@ -77,7 +77,7 @@ class AdminDashboard extends React.Component
                         <h1 className="h2">Dashboard</h1>
                         <div className="btn-toolbar mb-2 mb-md-0">
                             <div className="btn-group mr-2">
-                                <button className="btn btn-sm btn-outline-secondary">Share</button>
+                                <Link to='/admin/SellTop10' className="btn btn-sm btn-outline-secondary bold">Top 10 sản phẩm bán nhiều nhất</Link>
                                 <button className="btn btn-sm btn-outline-secondary">Export</button>
                             </div>
                             <button className="btn btn-sm btn-outline-secondary dropdown-toggle">

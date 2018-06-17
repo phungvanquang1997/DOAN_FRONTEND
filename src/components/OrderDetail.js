@@ -159,7 +159,7 @@ class OrderDetail extends React.Component{
             <div>
                 <table className="table table-hover">
                     <thead>
-                    <tr>
+                    <tr className="bold">
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
@@ -169,7 +169,7 @@ class OrderDetail extends React.Component{
                     </thead>
                     <tbody>
                     {list.map(item => (
-                    <tr>
+                    <tr >
                         <th scope="row">{item.ProID}</th>
                         <td>{item.ProName}</td>
                         <td>{item.Price}</td>

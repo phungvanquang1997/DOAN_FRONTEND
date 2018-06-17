@@ -3,6 +3,7 @@ import AdminDashboard from "./AdminDashboard";
 import { Switch, Route } from 'react-router-dom'
 import RouteError from "./RouteError";
 import AllProduct from "./AllProduct";
+import BestSeller from "./BestSeller";
 
 
 
@@ -29,7 +30,7 @@ const  RouteConfig =() =>
 
             <Route exact path='/admin/listUser' component={AdminDashboard}/>
             <Route exact path='/admin/listUser/:number' component={AdminDashboard}/>
-
+            <Route exact path='/admin/Selltop10' component={AdminDashboard}/>
             <Route exact path='/admin/order/' component={AdminDashboard}/>
             <Route exact path='/admin/order/:number' component={AdminDashboard}/>
 

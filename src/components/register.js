@@ -6,6 +6,7 @@ const min1 = 1;
 const max1 = 100;
 const rand1 = parseInt(min1 + Math.random() * (max1 - min1));
 
+
 class register extends React.Component {
 
     constructor(props) {
@@ -19,6 +20,7 @@ class register extends React.Component {
             ErrEmail : "hidden",
             ErrDiaChi : "hidden",
             ErrUserName1 : "hidden",
+            ErrUserName2 : "hidden",
             ErrPassword1 : "hidden",
             ErrPassword2 : "hidden",
             ErrName1 : "hidden",
@@ -29,10 +31,21 @@ class register extends React.Component {
             randomNumB : rand1,
 
         })
-
+        this.CheckWhiteSpace = this.CheckWhiteSpace.bind(this);
     }
 
 
+    CheckWhiteSpace(str)
+    {
+        for(let i = 0 ; i < str.length ; i++)
+        {
+            if(str[i]=== " ")
+            {
+                return 1; // có khoảng trắng
+            }
+        }
+        return 0;
+    }
 
     handlerRegister()
     {
@@ -52,6 +65,12 @@ class register extends React.Component {
             this.setState({ErrUserName1:"visible"});
         }
 
+      if(this.CheckWhiteSpace(this.f_Username.value))
+        {
+            console.log("hahahaha")
+            flag = false;
+            this.setState({ErrUserName2:"visible"});
+        }
 
 
         if(this.f_Name.value.length <= 10)
@@ -64,6 +83,7 @@ class register extends React.Component {
             flag = false;
             this.setState({ErrName1:"visible"});
         }
+
 
 
 
@@ -95,6 +115,7 @@ class register extends React.Component {
             flag = false;
             this.setState({ErrSDT:"visible"});
         }
+
 
 
         if(this.f_DiaChi.value === "" || this.f_DiaChi.value == null)
@@ -133,6 +154,7 @@ class register extends React.Component {
                 ErrUserName1 : "hidden",
                 ErrPassword1 : "hidden",
                 ErrPassword2 : "hidden",
+                ErrUserName2 : "hidden",
                 ErrName1 : "hidden",
                 ErrSDT1 : "hidden",
                 ErrEmail1 : "hidden",
@@ -200,6 +222,11 @@ class register extends React.Component {
                                    placeholder="PhungVanQuang"/>
                         </div>
 
+                      <div className={this.state.ErrUserName2} id="pdtop20">
+                        <div className="alert alert-danger" id="ThongBao" role="alert">
+                            <strong>Tên đăng nhập không được chứa khoảng trắng !</strong>.
+                        </div>
+                      </div>
 
                         <div className={this.state.ErrUserName} id="pdtop20">
                             <div className="alert alert-danger" id="ThongBao" role="alert">
