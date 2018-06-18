@@ -14,6 +14,8 @@ class OrderDetail extends React.Component{
             list: [],
             isHidden : "hidden",
             value: '0',
+            Address: "",
+            Customer : "",
         }
         /*this.handlerUpdate = this.handlerUpdate.bind(this);*/
         this.handleChange = this.handleChange.bind(this);
@@ -102,7 +104,9 @@ class OrderDetail extends React.Component{
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        list: result
+                        list: result,
+                        Address : result[0].f_DiaChi,
+                        Customer : result[0].f_Name,
                     });
                     console.log(result);
                 })
@@ -131,8 +135,9 @@ class OrderDetail extends React.Component{
 
     render(){
 
-        const {error, isLoaded, list} = this.state;
-        console.log(list);
+        const {error, isLoaded, list,Address,Customer} = this.state;
+
+
         for(var i = 0 ; i < list.length; i++)
         {
             if(list[i].Status==0)
@@ -169,7 +174,7 @@ class OrderDetail extends React.Component{
                     </thead>
                     <tbody>
                     {list.map(item => (
-                    <tr >
+                    <tr key={item.ProID}>
                         <th scope="row">{item.ProID}</th>
                         <td>{item.ProName}</td>
                         <td>{item.Price}</td>
@@ -179,6 +184,11 @@ class OrderDetail extends React.Component{
                         ))}
                     </tbody>
                 </table>
+
+                <div>
+                    <span> Thông tin giao hàng / địa chỉ :</span> <b className="bold">{Address}</b><br/>
+                    <span>Họ tên khách hàng : </span><b className="bold">{Customer}</b>
+                </div>
                 <div className="font-design">
                     Cập nhật trạng thái giao hàng :
                     <select value={this.state.value} onChange={this.handleChange} className="h20w120 text-center">
@@ -187,8 +197,9 @@ class OrderDetail extends React.Component{
                         <option   value="2">Đã giao</option>
                     </select>
                 </div>
-                <Link to='/admin/order' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
-                <button type="button"  className="btn btn-success" onClick={this.handlerUpdate.bind(this)}
+                <div className="pdtop30"></div>
+                <Link to='/admin/order' className="btn btn-primary">Back</Link>
+                <button type="button"  className="btn btn-success " onClick={this.handlerUpdate.bind(this)}
                 >Cập nhật
                 </button>
                 <div className={this.state.isHidden} id="pdtop20">

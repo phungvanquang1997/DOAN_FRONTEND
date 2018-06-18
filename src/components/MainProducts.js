@@ -17,6 +17,7 @@ import BestSeller from "./BestSeller"
 import NewProducts from "./NewProducts"
 import ProductViewest from "./ProductViewest"
 import ProductByNumPage from "./ProductByNumPage";
+import EditCard from "./EditCart"
 
 
 class Main extends React.Component {
@@ -47,6 +48,7 @@ class Main extends React.Component {
                     <Route exact path='/home/BestSeller' component={BestSeller}/>
                     <Route exact path="/home/page/:number" component={ProductByNumPage}/>
                     <Route exact path='/home/' component={ProductByNumPage}/>
+                    <Route exact path='/home/Cart/:number' component={EditCard}/>
                     <Route exact path = "/" component ={ProductByNumPage}/>
                 </Switch>
             </main>

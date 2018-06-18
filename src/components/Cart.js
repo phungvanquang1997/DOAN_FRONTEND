@@ -1,5 +1,6 @@
 import React from 'react'
 import RouteError from "./RouteError"
+import { Link } from 'react-router-dom'
 class Cart extends React.Component
 {
 
@@ -179,9 +180,9 @@ class Cart extends React.Component
                             <td>{item.Price}</td>
                             <td>{item.Quantity}</td>
                             <td className="text-right">
-                                <button  onClick={this.EditItem.bind(this)} className="btn btn-default btn-xs" role="button">
+                                <Link to={'/home/Cart/'+item.ProID}  onClick={this.EditItem.bind(this)} className="btn btn-default btn-xs" role="button">
                                     <span className="glyphicon glyphicon-pencil"></span>
-                                </button>
+                                </Link>
                                 <button onClick={this.RemoveItem.bind(this,item)} className="btn btn-danger btn-xs" role="button">
                                     <span className="glyphicon glyphicon-remove"></span>
                                 </button>
@@ -198,7 +199,7 @@ class Cart extends React.Component
                                 <div className="modal-header">
                                     <div className="fontcolor text-center ">Xác nhận thanh toán đơn hàng</div>
                                 </div>
-                                <p className="text-center">Bạn có muốn thánh toán đơn hàng này không ?? </p>
+                                <p className="text-center">Bạn có muốn thanh toán đơn hàng này không ?? </p>
                                 <div className="text-center">
                                     <button type="button" onClick={this.Pay.bind(this)} className="btn btn-success"
                                             data-dismiss="modal">Yes

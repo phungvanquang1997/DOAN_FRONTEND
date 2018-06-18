@@ -190,8 +190,9 @@ class ListOrders extends React.Component {
                                              </Link>*/}
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="btn-group pdleft text-center">
-                                                <Link to ={"/admin/order/"+item.OrderID} className="fas fa-edit btn btn-primary">Detail</Link>
-                                                <button type="button"  data-toggle="modal" data-target="#DeleteModal" onClick={this.handlerGoToDeleteModal.bind(this,item.OrderID)} className="btn btn-danger"
+
+                                                <Link to ={"/admin/order/"+item.OrderID} className=" glyphicon glyphicon-eye-open btn btn-primary"> Detail</Link>
+                                                <button type="button"  data-toggle="modal" data-target="#DeleteModal" onClick={this.handlerGoToDeleteModal.bind(this,item.OrderID)} className="btn btn-danger glyphicon glyphicon-close"
                                                 >Delete
                                                 </button>
                                             </div>

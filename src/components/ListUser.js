@@ -130,7 +130,7 @@ class ListUser extends React.Component {
                     <div className=" fontcolor text-center">
                         Danh sách khách hàng
                     </div>
-                    <div className="modal position paddingtop20" id="DeleteModal">
+                   {/* <div className="modal position paddingtop20" id="DeleteModal">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
@@ -148,7 +148,7 @@ class ListUser extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*/}
                     <div className="hover-yellow">
                         <table className="table table-sm table-hover">
                             <thead>
@@ -177,11 +177,7 @@ class ListUser extends React.Component {
                                              </Link>*/}
                                         <div className="d-flex justify-content-between align-items-center">
                                             <div className="btn-group pdleft text-center">
-                                                <Link to ={"/admin/listUser/"+item.f_ID} className="fas fa-edit btn btn-primary">Detail</Link>
-                                                <button type="button" data-toggle="modal" data-target="#DeleteModal" onClick={this.handlerGoToDeleteModal.bind(this,item.f_ID)} className="btn btn-danger"
-                                                >Delete
-                                                </button>
-
+                                                <Link to ={"/admin/listUser/"+item.f_ID} className=" glyphicon glyphicon-eye-open btn btn-primary"> Detail</Link>
                                             </div>
                                         </div>
                                     </td>

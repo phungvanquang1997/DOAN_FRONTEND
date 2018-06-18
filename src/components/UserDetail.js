@@ -449,7 +449,7 @@ class UserDetail extends React.Component{
                                     </div>
                         </div>
                         ))}
-                        <Link to='/admin/listUser' className="btn btn-primary"><span className="fas fa-backward"></span></Link>
+                        <Link to='/admin/listUser' className="btn btn-primary">Back</Link>
                         <button type="button" className="btn btn-success" onClick={this.handlerUpdate.bind(this)}
                         >Cập nhật
                         </button>
