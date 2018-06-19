@@ -22,7 +22,8 @@ class BestSeller extends React.Component {
         fetch(url,{
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         }).then(res => res.json())
             .then(
@@ -48,7 +49,9 @@ class BestSeller extends React.Component {
         fetch(url,{
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         }).then(res => res.json())
             .then(
                 (result) => {

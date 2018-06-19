@@ -42,6 +42,7 @@ class ProductDetail extends React.Component {
             method : "GET",
             headers: {
                 'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())
@@ -64,6 +65,7 @@ class ProductDetail extends React.Component {
             method : "GET",
             headers: {
                 'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())
@@ -192,6 +194,7 @@ class ProductDetail extends React.Component {
             method : "GET",
             headers: {
                 'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())
@@ -222,6 +225,7 @@ class ProductDetail extends React.Component {
             method : "GET",
             headers: {
                 'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         })
 
@@ -239,6 +243,7 @@ class ProductDetail extends React.Component {
             method : "GET",
             headers: {
                 'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())

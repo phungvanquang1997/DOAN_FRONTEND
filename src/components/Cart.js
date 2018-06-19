@@ -78,6 +78,7 @@ class Cart extends React.Component
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer " + token.toString(),
+                "Cache-Control": "no-cache",
             },
             mode: 'cors',
             body: JSON.stringify({

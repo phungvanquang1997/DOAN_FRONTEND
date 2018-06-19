@@ -188,6 +188,7 @@ class UserDetail extends React.Component{
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "bearer " + token.toString(),
+                    "Cache-Control": "no-cache",
                 },
                 body: JSON.stringify({
                     UserID: id,
@@ -217,6 +218,7 @@ class UserDetail extends React.Component{
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())
@@ -252,6 +254,7 @@ class UserDetail extends React.Component{
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())

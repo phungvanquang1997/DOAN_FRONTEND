@@ -46,7 +46,9 @@ class OrderDetail extends React.Component{
             mode: 'cors',
             headers: {
                 "Authorization": "bearer "+token.toString(),
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         }).then(()=>this.reload());
 
         /*fetch(url, {

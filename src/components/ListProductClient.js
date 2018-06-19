@@ -43,6 +43,7 @@ class ListProductClient extends React.Component {
             }),
             headers: {
                 'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         }).catch(error => this.reload())
             .then(response => this.reload());
@@ -57,7 +58,9 @@ class ListProductClient extends React.Component {
         fetch(url,{
             method: "GET",
             headers: {
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         }).then(res => res.json())
             .then(
                 (result) => {
@@ -83,7 +86,9 @@ class ListProductClient extends React.Component {
         fetch(url,{
             method: "GET",
             headers: {
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         }).then(res => res.json())
             .then(
                 (result) => {

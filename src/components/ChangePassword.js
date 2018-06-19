@@ -48,6 +48,7 @@ class ChangePassword extends React.Component{
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "bearer " + token.toString(),
+                    "Cache-Control": "no-cache",
                 },
                 mode: 'cors',
                 body: JSON.stringify({
@@ -108,6 +109,7 @@ class ChangePassword extends React.Component{
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "bearer " + token.toString(),
+                    "Cache-Control": "no-cache",
                 },
                 body: JSON.stringify({
                     f_ID: f_id,
@@ -130,6 +132,7 @@ class ChangePassword extends React.Component{
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())
@@ -155,10 +158,7 @@ class ChangePassword extends React.Component{
 
     componentDidMount()
     {
-        var token = window.localStorage.getItem('access_token');
 
-        var f_id = window.localStorage.getItem('uid'); // lấy id người dùng từ localStorage
-        var url = "http://localhost:3001/api/users/users/"+f_id;
         this.setState({
             isLoaded: true,
             UserName :  window.localStorage.getItem('username')

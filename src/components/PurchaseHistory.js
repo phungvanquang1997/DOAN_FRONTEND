@@ -29,6 +29,7 @@ class Purchase extends React.Component
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache, no-store, must-revalidate",
             },
         }).then(rs=>rs.json()).then((result)=>{
             this.setState({ListOrderDetail : result})
@@ -50,6 +51,7 @@ class Purchase extends React.Component
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache, no-store, must-revalidate",
             },
         }).then(rs=>rs.json()).then((rs)=>{
             this.setState({

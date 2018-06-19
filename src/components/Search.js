@@ -24,6 +24,7 @@ class Search extends React.Component {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
             },
         }).then(res => res.json())
             .then(

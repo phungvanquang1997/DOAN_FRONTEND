@@ -164,6 +164,7 @@ class ListProduct extends React.Component {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "bearer " + token.toString(),
+                    "Cache-Control": "no-cache",
                 },
             }).then(rs => rs.json()).then((rs) => {
                 maxID : rs
@@ -188,6 +189,7 @@ class ListProduct extends React.Component {
             headers: {
                 "Authorization": "bearer "+token.toString(),
                 'Content-Type': 'application/json'},
+               "Cache-Control": "no-cache",
         }).then(res => res.json())
             .then(
                 (result) => {
@@ -215,7 +217,9 @@ class ListProduct extends React.Component {
             "method": "GET",
             "headers": {
                 "Authorization": "bearer "+token.toString(),
-                "Cache-Control": "no-cache",
+                "Cache-Control": "no-cache, no-store, must-revalidate",
+                'Pragma': 'no-cache',
+                'Expires': '0',
                 "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
         }).then(res=>res.json())
             .
@@ -233,7 +237,10 @@ class ListProduct extends React.Component {
             "async": true,
             "method": "GET",
             "headers": {
-                "Cache-Control": "no-cache",
+                "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache, no-store, must-revalidate",
+                'Pragma': 'no-cache',
+                'Expires': '0',
                 "Postman-Token": "32d031bc-43e9-4771-bcc9-acb5b7b0b737"},
         }).then(res=>res.json())
             .
@@ -255,7 +262,9 @@ class ListProduct extends React.Component {
             method: "GET",
             headers: {
                 "Authorization": "bearer "+token.toString(),
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         }).then(res => res.json())
             .then(
                 (result) => {
@@ -288,6 +297,7 @@ class ListProduct extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
             mode: 'cors',
             body: JSON.stringify({
@@ -318,7 +328,9 @@ class ListProduct extends React.Component {
             method: 'GET',
             headers: {
                 "Authorization": "bearer "+token.toString(),
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         })
             .then(res => res.json())
             .then(
@@ -352,7 +364,9 @@ class ListProduct extends React.Component {
             method: 'DELETE',
             headers: {
                 "Authorization": "bearer "+token.toString(),
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         }).then(()=>this.reload());
 
     }

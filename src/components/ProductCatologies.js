@@ -19,13 +19,15 @@ class ProductCatologies extends React.Component
     }
 
     componentDidMount() {
-        var url = "http://localhost:3001/nsx/nsx/"
+        var url = "http://localhost:3001/nsx/nsx/";
 
         //gửi json nên để header 'Content-Type': 'application/json'
         fetch(url,{
             method: "GET",
             headers: {
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                "Cache-Control": "no-cache",
+            },
         }).then(res => res.json())
             .then(
                 (result) => {

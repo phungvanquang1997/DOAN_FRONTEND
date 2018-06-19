@@ -41,6 +41,7 @@ class ListOrders extends React.Component {
             headers: {
                 "Authorization": "bearer "+token.toString(),
                 'Content-Type': 'application/json'},
+            "Cache-Control": "no-cache",
         })
             .then(res => res.json())
             .then(
@@ -67,6 +68,7 @@ class ListOrders extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
         }).catch(error => this.reload())
             .then(response => this.reload());
@@ -82,6 +84,7 @@ class ListOrders extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
             mode: 'cors',
             body: JSON.stringify({

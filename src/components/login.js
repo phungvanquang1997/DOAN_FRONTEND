@@ -27,6 +27,7 @@ class Login extends React.Component {
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json",
+                "Cache-Control": "no-cache",
             },
         }).then((rs)=>rs.json()).then((rs1)=>{
             if(rs1.err)

@@ -30,6 +30,7 @@ class ListUser extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
             mode:"cors"
         })
@@ -65,6 +66,7 @@ class ListUser extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
             mode:"cors"
         })
@@ -99,6 +101,7 @@ class ListUser extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
         }).then(()=>this.reload());
     }

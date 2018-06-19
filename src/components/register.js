@@ -164,7 +164,8 @@ class register extends React.Component {
             fetch("http://localhost:3001/api/users/users", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Cache-Control": "no-cache",
                 },
                 mode: 'cors',
                 body: JSON.stringify({

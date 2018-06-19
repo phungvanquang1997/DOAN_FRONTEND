@@ -188,6 +188,7 @@ class Profile extends React.Component{
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "bearer " + token.toString(),
+                    "Cache-Control": "no-cache",
                 },
                 body: JSON.stringify({
                     UserID: window.localStorage.getItem('uid'),
@@ -217,6 +218,7 @@ class Profile extends React.Component{
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())
@@ -251,6 +253,7 @@ class Profile extends React.Component{
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
+                "Cache-Control": "no-cache",
             },
         })
             .then(res => res.json())
