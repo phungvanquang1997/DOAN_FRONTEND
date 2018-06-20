@@ -18,12 +18,12 @@ class BestSeller extends React.Component {
     reload()
     {
         //gửi json nên để header 'Content-Type': 'application/json'
-        var url = "http://localhost:3001/api/BanHang/BestSeller/";
+        var url = "http://localhost:3001/api/BestSeller/";
         fetch(url,{
-            method: "POST",
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
-                "Cache-Control": "no-cache",
+                "Cache-Control": "no-cache"
+
             },
         }).then(res => res.json())
             .then(
@@ -44,13 +44,13 @@ class BestSeller extends React.Component {
     }
 
     componentDidMount() {
-        var url = "http://localhost:3001/api/BanHang/BestSeller/";
+        var url = "http://localhost:3001/api/BestSeller/";
         //gửi json nên để header 'Content-Type': 'application/json'
         fetch(url,{
-            method: "POST",
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json',
                 "Cache-Control": "no-cache",
+         
             },
         }).then(res => res.json())
             .then(

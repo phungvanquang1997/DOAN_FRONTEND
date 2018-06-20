@@ -65,11 +65,14 @@ class EditCart extends React.Component {
             console.log((window.localStorage.getItem("SaveProduct")));
             var CartItem =  JSON.parse(window.localStorage.getItem("SaveProduct"));
             var ProID = this.props.match.params.number;
-             if(CartItem[0]==ProID)
-            {
-                CartItem[3] = this.Quantity.value;
+            for(let i = 0 ; i < CartItem.length ; i=i+4) {
+                if (CartItem[i] == ProID) {
+                    console.log(i+"-"+ProID)
+                    CartItem[i+3] = this.Quantity.value.toString();
+                    break;
+                }
             }
-
+            console.log((window.localStorage.getItem("SaveProduct")));
             window.localStorage.setItem("SaveProduct",JSON.stringify(CartItem));
             this.Quantity.value = null;
             this.setState({ErrBuy2:"visible"});

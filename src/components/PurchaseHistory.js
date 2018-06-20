@@ -29,7 +29,7 @@ class Purchase extends React.Component
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
-                "Cache-Control": "no-cache, no-store, must-revalidate",
+                "Cache-Control": "no-cache",
             },
         }).then(rs=>rs.json()).then((result)=>{
             this.setState({ListOrderDetail : result})
@@ -51,9 +51,9 @@ class Purchase extends React.Component
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": "bearer "+token.toString(),
-                "Cache-Control": "no-cache, no-store, must-revalidate",
+                "Cache-Control": "no-cache",
             },
-        }).then(rs=>rs.json()).then((rs)=>{
+        }).then(rs=>rs.json()).catch(console.log("catched")) .then((rs)=>{
             this.setState({
                 List : rs ,
                 totalOrder : rs.length
@@ -72,6 +72,7 @@ class Purchase extends React.Component
         else {
         const list = this.state.List;
         const listOrderDetail = this.state.ListOrderDetail;
+        console.log(listOrderDetail);
         for(let i = 0 ; i < list.length ; i++)
         {
             if(list[i].Status==0)
@@ -107,7 +108,7 @@ class Purchase extends React.Component
                     </thead>
                     <tbody>
                     {list.map(item=>(
-                        <tr>
+                        <tr key={item.OrderID}>
                             <th scope="row"> {item.OrderID}</th>
                             <td className="text-center">{item.OrderDate}</td>
                             <td> {item.Status}
@@ -142,7 +143,7 @@ class Purchase extends React.Component
 
                         <tbody>
                         {listOrderDetail.map(item=>(
-                            <tr className="bg-info bold">
+                            <tr className="bg-info bold" key={item.ProID}>
                                 <th scope="row"> {item.ProID}</th>
                                 <td> {item.ProName}</td>
                                 <td>{item.Price}</td>

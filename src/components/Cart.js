@@ -175,7 +175,7 @@ class Cart extends React.Component
 
                         <React.Fragment>
                         {listCart.map(item=>(
-                        <tr>
+                        <tr key={item.ProID}>
                             <td>{item.ProID}</td>
                             <td>{item.ProName}</td>
                             <td>{item.Price}</td>
